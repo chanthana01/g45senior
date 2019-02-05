@@ -13,6 +13,7 @@ var router = express.Router();
 router.get("/", function(req, res, next) {
   res.render('login');
 });
+
 router.post("/login", function(req, res, next) {
   if (!req.body) return res.sendStatus(400)
   console.log(req.body.studentId);
