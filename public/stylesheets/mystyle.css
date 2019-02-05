@@ -1,0 +1,46 @@
+.c1 {
+  background-image: url("fog.jpg");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.c2 {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.c3 {
+  margin-top: 1.2rem !important;
+}
+
+.c4 {
+  background-color: lightgreen;
+}
+
+.bgColor1 {
+  background-color: #F0F0F0;
+}
+
+.bgColor2 {
+  background-image: linear-gradient(to right bottom, #ceffdc, #93dfd4, #67bbcc, #5895bb, #5f6e9d, #746193, #855481, #904768, #b05365, #ca645d, #db7b53, #e39748);
+  /* background-color: red; */
+
+}
+
+.bgTransparent {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.whiteColor {
+  color: white;
+}
+
+.c5 {
+  background-image: url("background2.gif");
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
