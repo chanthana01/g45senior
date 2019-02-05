@@ -56,5 +56,35 @@ module.exports = {
         assert.equal(1, r.insertedCount);
       });
     });
+  },
+  updateTodb: function(collection, myquery, newvalues) {
+    let MongoClient = require('mongodb').MongoClient;
+    let assert = require('assert');
+    let url = "mongodb://127.0.0.1:27017/";
+    let dbName = 'scientific';
+    let client = new MongoClient(url, {
+      useNewUrlParser: true
+    });
+
+    client.connect(function(err, client) {
+      assert.equal(null, err);
+      console.log("Connected correctly to server");
+      let db = client.db(dbName);
+
+      // var myquery = {
+      //   address: "Valley 345"
+      // };
+      // var newvalues = {
+      //   $set: {
+      //     name: "Mickey",
+      //     address: "Canyon 123"
+      //   }
+      // };
+      db.collection(collection).updateOne(myquery, newvalues, function(err, r) {
+        assert.equal(null, err);
+
+        console.log("1 document updated");
+      });
+    });
   }
 }

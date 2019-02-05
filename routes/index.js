@@ -41,7 +41,7 @@ router.post("/login", function(req, res, next) {
 
         res.redirect('/landing');
       } else {
-        res.render('failLogin');
+        res.render('msg',{error:"Invalid username or password."});
       }
     }, function(err) {
       console.error('The promise was rejected', err, err.stack);
