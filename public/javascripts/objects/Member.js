@@ -10,6 +10,7 @@ module.exports = class Member {
       // this.rePassword = rePassword.trim();
       this.fullName = (this.firstName + " " + this.lastName).toUpperCase();
       this.previlege = "member";
+      this.loginCount = 0;
     }
     get getStudentId() {
       return this.studentId;
@@ -31,6 +32,9 @@ module.exports = class Member {
     }
     get getFullName() {
       return this.fullName;
+    }
+    get getLoginCount() {
+      return this.loginCount;
     }
 
     set setStudentId(studentId) {

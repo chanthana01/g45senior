@@ -1,3 +1,4 @@
+var Mymongo = require("../DBdriver/Mymongo.js");
 module.exports = {
   checkValid: function(studentId, firstName, lastName, iden, email, password, rePassword) {
     // VALIDATION
@@ -53,5 +54,41 @@ module.exports = {
     }
 
     return resultObject;
+  },
+  increaseLoginCount: function(){
+    let query = {
+      name: "visitor"
+
+    };
+    Mymongo.FindinCol1("statistic", query).then(function(items) {
+      console.info('The promise was fulfilled with items!', items);
+      if (items.length == 1) {
+        let increaseNum = parseInt(items[0].visitCount) + 1 ;
+        Mymongo.updateTodb('statistic',query, { $set: {visitCount : increaseNum}});
+      } else {
+        console.log("ERROR Cannot increase visitor count");
+      }
+    }, function(err) {
+      console.error('The promise was rejected', err, err.stack);
+      res.sendStatus(500);
+    });
+  },
+  increaseMemberCount: function(){
+    let query = {
+      name: "member"
+
+    };
+    Mymongo.FindinCol1("statistic", query).then(function(items) {
+      console.info('The promise was fulfilled with items!', items);
+      if (items.length == 1) {
+        let increaseNum = parseInt(items[0].memberCount) + 1 ;
+        Mymongo.updateTodb('statistic',query, { $set: {memberCount : increaseNum}});
+      } else {
+        console.log("ERROR Cannot increase member count");
+      }
+    }, function(err) {
+      console.error('The promise was rejected', err, err.stack);
+      res.sendStatus(500);
+    });
   }
 }

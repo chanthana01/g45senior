@@ -36,9 +36,10 @@ router.post("/login", function(req, res, next) {
         req.session.status = "member";
         req.session.id_Session = items[0].studentId;
         req.session.fullName_Session = items[0].fullName;
-        // unimplement
-        // req.session.privilege_Session =items[0].
 
+        let countLogin = parseInt(items[0].loginCount) + 1 ;
+        Mymongo.updateTodb('member',{ studentId : items[0].studentId }, { $set: {loginCount : countLogin}});
+        Myutil.increaseLoginCount();
         res.redirect('/landing');
       } else {
         res.render('msg',{error:"Invalid username or password."});
@@ -111,6 +112,7 @@ router.post("/register", function(req, res, next) {
         res.render('failRegis', {});
       } else {
         Mymongo.insertToDb(requestMember, "member");
+        Myutil.increaseMemberCount();
         res.render('thankRegis', {});
       }
     });

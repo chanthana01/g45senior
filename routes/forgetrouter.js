@@ -30,7 +30,7 @@ router.post("/forgotsubmit", function(req, res, next) {
     console.info('The promise was fulfilled with items!', items);
     if (items.length == 1) {
       // update password db
-      Mymongo.updateTodb('member',{ studentId : items[0].studentId }, { $set: {password : req.body.forgotNewPass }})
+      Mymongo.updateTodb('member',{ studentId : items[0].studentId }, { $set: {password : req.body.forgotNewPass }});
       return res.render('msg',{error :"Password has been changed."});
     } else {
       return res.render('msg',{error :"Invalid username or identification."});//will add sent json
