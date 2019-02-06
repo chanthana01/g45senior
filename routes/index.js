@@ -13,6 +13,13 @@ var router = express.Router();
 router.get("/", function(req, res, next) {
   res.render('login');
 });
+router.get("/logout", function(req, res, next) {
+  req.session.destroy(function(err) {
+  // cannot access session here
+  if(err) throw err;
+  res.redirect("/");
+  })
+});
 
 router.post("/login", function(req, res, next) {
   if (!req.body) return res.sendStatus(400)
@@ -22,7 +29,7 @@ router.post("/login", function(req, res, next) {
     req.session.status = "admin";
     req.session.id_Session = "admin";
     req.session.fullName_Session = "admin";
-    res.redirect('/landing');
+    res.redirect('/admin/dashboard');
   } else {
     let query = {
       studentId: req.body.studentId,
