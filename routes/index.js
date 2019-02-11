@@ -20,6 +20,9 @@ router.get("/logout", function(req, res, next) {
   res.redirect("/");
   })
 });
+router.get("/matrixmultiplication", function(req, res, next) {
+  res.render('matrixmultiply',{status:req.session.status, id:req.session.id_Session , name:req.session.fullName_Session});
+});
 
 router.post("/login", function(req, res, next) {
   if (!req.body) return res.sendStatus(400)

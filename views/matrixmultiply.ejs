@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link rel="stylesheet" href="/stylesheets/mystyle.css">
+  <title>web</title>
+</head>
+
+<body class="bgColor2">
+  <nav class="navbar navbar-expand-lg navbar-light bgTransparent">
+    <a class="navbar-brand" href="">
+      <img src="/images/si.jpg" width="30" height="30" class="d-inline-block align-top" alt="">
+      Scientific Computing
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li>
+          <button type="button" class="btn btn-danger">
+            <%= name  %></button>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/landing">Home <span class="sr-only">(current)</span></a>
+        </li>
+
+        <li class="nav-item dropdown active">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Content
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Content1</a>
+            <a class="dropdown-item" href="#">Content2</a>
+            <a class="dropdown-item" href="#">Content3</a>
+            <a class="dropdown-item" href="#">Content4</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout">Log out <span class="sr-only">(current)</span></a>
+        </li>
+
+        <!-- <li class="nav-item">
+        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+      </li> -->
+      </ul>
+
+      <!-- <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form> -->
+    </div>
+  </nav>
+  <!-- <div class="jumbotron jumbotron-fluid bgTransparent">
+
+    <div class="container c2">
+      <h1 class="display-4">Scientific Computing</h1>
+      <p class="lead">Topic selector</p>
+    </div>
+  </div> -->
+  <!-- <div class="container c4">
+    <h6 class="display-6">Welcome .. (Some user info)</h1>
+  </div> -->
+  <div class="container">
+    <div class="row my-5 ">
+      <div class="col-12" >
+        <div class="card">
+          <div class="row justify-content-around my-5" id="changableContent2">
+            <div class="col-sm-5 col-12">
+              <div class="card">
+                <div class="card-body">
+                  <h1 class="card-title">Matrix A</h1>
+                  <h6 class="card-subtitle mb-2 text-muted">Enter dimension of Matrix A</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">Row</h6>
+                  <select class="form-control" id="matrixARowSelect">
+                    <% for(let i=1;i<=100;i++){ %>
+                      console.log(i);
+                      <option value="<%= i %>"><%= i %></option>
+                    <%}%>
+                  </select>
+                  <br>
+                  <h6 class="card-subtitle mb-2 text-muted">Column</h6>
+                  <select class="form-control" id="matrixAColSelect" onchange="changeBRow()">
+                    <% for(let i=1;i<=100;i++){ %>
+                      console.log(i);
+                      <option value="<%= i %>"><%= i %></option>
+                    <%}%>
+                  </select>
+
+
+
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-5 col-12">
+              <div class="card">
+                <div class="card-body">
+                  <h1 class="card-title">Matrix B</h1>
+                  <h6 class="card-subtitle mb-2 text-muted">Enter dimension of Matrix B</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">Row</h6>
+                  <select class="form-control" id="matrixBRowSelect" onchange="changeACol()">
+                    <% for(let i=1;i<=100;i++){ %>
+                      console.log(i);
+                      <option value="<%= i %>"><%= i %></option>
+                    <%}%>
+                  </select>
+                  <br>
+                  <h6 class="card-subtitle mb-2 text-muted">Column</h6>
+                  <select class="form-control" id="matrixBColSelect">
+                    <% for(let i=1;i<=100;i++){ %>
+                      console.log(i);
+                      <option value="<%= i %>"><%= i %></option>
+                    <%}%>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center my-3 p-2" id="changableContent1">
+            <button type="button" class="btn btn-primary" onclick="createTable()">Set matrices</button>
+          </div>
+
+
+        </div>
+
+      </div>
+    </div>
+
+
+
+  </div>
+
+
+  <footer>
+    <div class="jumbotron bgTransparent">
+
+      <div class="col-6 col-sm-6">
+        <img src="/images/SIITlogo.jpeg" width="100" height="70" class=" " alt="">
+      </div>
+      <div class="col-6 col-sm-6">
+        <p class="lead">This is part of <strong>SIIT</strong> senior project. Created by <strong>G45</strong> </p>
+        <hr>
+        <!-- <a href="#">Facebook</a>
+        <a href="#">Twitter</a> -->
+      </div>
+    </div>
+
+
+
+
+  </footer>
+  <!-- <img src="../chaweng.jpg" class="img-fluid" alt="Responsive image"> -->
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    function changeBRow(){
+      let colAVal = document.getElementById("matrixAColSelect").value;
+      document.getElementById("matrixBRowSelect").value = colAVal;
+    }
+    function changeACol(){
+      let rowBVal = document.getElementById("matrixBRowSelect").value;
+      document.getElementById("matrixAColSelect").value = rowBVal;
+    }
+    function createTableForMatrixA(){
+      let rowA = document.getElementById("matrixARowSelect").value;
+      let colA = document.getElementById("matrixAColSelect").value;
+      let headCol = "";
+      let temp1 = "";
+
+      // loop head
+      for(let i =1; i<parseInt(colA)+1;i++){
+        headCol += '<th scope="col">'+"A"+i+'</th>';
+      }
+      // loop input
+      for(let k =1; k<parseInt(rowA)+1;k++){
+        temp1 += '<tr><th scope="row">'+k+'</th>';
+          for(let u =1; u<parseInt(colA)+1;u++){
+            let inputId="a"+k+u;
+            // console.log(inputId);
+            temp1 += '<td>'+'<input type="text" class="form-control width2" id='+inputId+' value="">'+'</td>';
+          }
+        temp1 += '</tr>';
+      }
+      let aTable = '<div class="col-12 overflow-auto mx-2"><table class="table table-striped"><thead><tr><th scope="col">#</th>'+headCol+ '</tr></thead><tbody>'+temp1+'</tbody></table></div>' ;
+
+      // $('#changableContent1').append(aTable);
+      createTableForMatrixB(aTable);
+    }
+    function createTableForMatrixB(aTable){
+      let rowB = document.getElementById("matrixBRowSelect").value;
+      let colB = document.getElementById("matrixBColSelect").value;
+      let headCol = "";
+      let temp1 = "";
+
+      // loop head
+      for(let i =1; i<parseInt(colB)+1;i++){
+        headCol += '<th scope="col">'+"B"+i+'</th>';
+      }
+      // loop input
+      for(let k =1; k<parseInt(rowB)+1;k++){
+        temp1 += '<tr><th scope="row">'+k+'</th>';
+          for(let u =1; u<parseInt(colB)+1;u++){
+            let inputId="a"+k+u;
+            // console.log(inputId);
+            temp1 += '<td>'+'<input type="text" class="form-control width2" id='+inputId+' value="">'+'</td>';
+          }
+        temp1 += '</tr>';
+      }
+      let bTable = '<div class="col-12 overflow-auto mx-2"><table class="table table-striped"><thead><tr><th scope="col">#</th>'+headCol+ '</tr></thead><tbody>'+temp1+'</tbody></table></div>' ;
+      document.getElementById("changableContent2").innerHTML = "";
+      document.getElementById("changableContent1").innerHTML = "";
+      $('#changableContent1').removeClass("my-5");
+      $('#changableContent1').append('<div class="col-12 mb-2"><h2>Enter input matrix A</h2></div>');
+      $('#changableContent1').append(aTable);
+      $('#changableContent1').append('<div class="col-12 mb-2"><h2>Enter input matrix B</h2></div>');
+      $('#changableContent1').append(bTable);
+      $('#changableContent1').append('<div class="col-12 mb-2"><button type="button" class="btn btn-primary" onclick="matricesPreparing()">Multiply matrices</button></div>');
+
+    }
+    function createTable(){
+      createTableForMatrixA();
+    }
+    function matricesPreparing(){
+      
+    }
+  </script>
+</body>
+
+</html>

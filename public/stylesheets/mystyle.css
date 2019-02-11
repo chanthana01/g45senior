@@ -44,3 +44,9 @@
   -o-background-size: cover;
   background-size: cover;
 }
+.overFlow {
+   overflow: auto;
+}
+.width2{
+  width: 20px;
+}
