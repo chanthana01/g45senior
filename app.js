@@ -12,6 +12,7 @@ var expressSession = require('express-session');
 var indexRouter = require('./routes/index');
 var forgotRouter = require('./routes/forgetrouter');
 var adminRouter = require('./routes/admin');
+var matrixRouter = require('./routes/matrix');
 
 var app = express();
 
@@ -30,6 +31,7 @@ app.use(expressSession({secret:'SCIENTIFICcomputingG45',saveUninitialized:false,
 app.use('/', indexRouter);
 app.use('/forgot', forgotRouter);
 app.use('/admin', adminRouter);
+app.use('/matrix', matrixRouter);
 
 
 // catch 404 and forward to error handler
