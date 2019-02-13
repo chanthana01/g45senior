@@ -70,9 +70,9 @@
   </div> -->
   <div class="container">
     <div class="row my-5 ">
-      <div class="col-12" >
+      <div class="col-12">
         <div class="card">
-          <div class="row justify-content-around my-5" id="changableContent2">
+          <div class="row justify-content-around my-5 margin-15" id="changableContent2">
             <div class="col-sm-5 col-12">
               <div class="card">
                 <div class="card-body">
@@ -81,16 +81,20 @@
                   <h6 class="card-subtitle mb-2 text-muted">Row</h6>
                   <select class="form-control" id="matrixARowSelect">
                     <% for(let i=1;i<=100;i++){ %>
-                      console.log(i);
-                      <option value="<%= i %>"><%= i %></option>
+                    console.log(i);
+                    <option value="<%= i %>">
+                      <%= i %>
+                    </option>
                     <%}%>
                   </select>
                   <br>
                   <h6 class="card-subtitle mb-2 text-muted">Column</h6>
                   <select class="form-control" id="matrixAColSelect" onchange="changeBRow()">
                     <% for(let i=1;i<=100;i++){ %>
-                      console.log(i);
-                      <option value="<%= i %>"><%= i %></option>
+                    console.log(i);
+                    <option value="<%= i %>">
+                      <%= i %>
+                    </option>
                     <%}%>
                   </select>
 
@@ -107,23 +111,27 @@
                   <h6 class="card-subtitle mb-2 text-muted">Row</h6>
                   <select class="form-control" id="matrixBRowSelect" onchange="changeACol()">
                     <% for(let i=1;i<=100;i++){ %>
-                      console.log(i);
-                      <option value="<%= i %>"><%= i %></option>
+                    console.log(i);
+                    <option value="<%= i %>">
+                      <%= i %>
+                    </option>
                     <%}%>
                   </select>
                   <br>
                   <h6 class="card-subtitle mb-2 text-muted">Column</h6>
                   <select class="form-control" id="matrixBColSelect">
                     <% for(let i=1;i<=100;i++){ %>
-                      console.log(i);
-                      <option value="<%= i %>"><%= i %></option>
+                    console.log(i);
+                    <option value="<%= i %>">
+                      <%= i %>
+                    </option>
                     <%}%>
                   </select>
                 </div>
               </div>
             </div>
           </div>
-          <div class="row justify-content-center my-3 p-2" id="changableContent1">
+          <div class="row justify-content-center my-3 p-2 margin-15" id="changableContent1">
             <button type="button" class="btn btn-primary" onclick="createTable()">Set matrices</button>
           </div>
 
@@ -163,60 +171,68 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
   <script type="text/javascript">
-    function changeBRow(){
+    var rowA;
+    var colA;
+    var rowB;
+    var colB;
+
+    function changeBRow() {
       let colAVal = document.getElementById("matrixAColSelect").value;
       document.getElementById("matrixBRowSelect").value = colAVal;
     }
-    function changeACol(){
+
+    function changeACol() {
       let rowBVal = document.getElementById("matrixBRowSelect").value;
       document.getElementById("matrixAColSelect").value = rowBVal;
     }
-    function createTableForMatrixA(){
-      let rowA = document.getElementById("matrixARowSelect").value;
-      let colA = document.getElementById("matrixAColSelect").value;
-      let headCol = "";
+
+    function createTableForMatrixA() {
+      rowA = document.getElementById("matrixARowSelect").value;
+      colA = document.getElementById("matrixAColSelect").value;
+      let headColA = "";
       let temp1 = "";
 
       // loop head
-      for(let i =1; i<parseInt(colA)+1;i++){
-        headCol += '<th scope="col">'+"A"+i+'</th>';
+      for (let i = 1; i < parseInt(colA) + 1; i++) {
+        headColA += '<th scope="col">' + "A" + i + '</th>';
       }
       // loop input
-      for(let k =1; k<parseInt(rowA)+1;k++){
-        temp1 += '<tr><th scope="row">'+k+'</th>';
-          for(let u =1; u<parseInt(colA)+1;u++){
-            let inputId="a"+k+u;
-            // console.log(inputId);
-            temp1 += '<td>'+'<input type="text" class="form-control width2" id='+inputId+' value="">'+'</td>';
-          }
+      for (let k = 1; k < parseInt(rowA) + 1; k++) {
+        temp1 += '<tr><th scope="row">' + k + '</th>';
+        for (let u = 1; u < parseInt(colA) + 1; u++) {
+          let inputAId = "a" + k + u;
+          // console.log(inputId);
+          temp1 += '<td>' + '<input type="text" class="form-control width2" id=' + inputAId + ' value="">' + '</td>';
+        }
         temp1 += '</tr>';
       }
-      let aTable = '<div class="col-12 overflow-auto mx-2"><table class="table table-striped"><thead><tr><th scope="col">#</th>'+headCol+ '</tr></thead><tbody>'+temp1+'</tbody></table></div>' ;
+      let aTable = '<div class="col-12 overflow-auto mx-2"><table class="table table-striped table-sm" ><thead><tr><th scope="col">#</th>' + headColA + '</tr></thead><tbody>' + temp1 + '</tbody></table></div>';
 
       // $('#changableContent1').append(aTable);
       createTableForMatrixB(aTable);
     }
-    function createTableForMatrixB(aTable){
-      let rowB = document.getElementById("matrixBRowSelect").value;
-      let colB = document.getElementById("matrixBColSelect").value;
-      let headCol = "";
-      let temp1 = "";
+
+    function createTableForMatrixB(aTable) {
+      rowB = document.getElementById("matrixBRowSelect").value;
+      colB = document.getElementById("matrixBColSelect").value;
+      let headColB = "";
+      let temp2 = "";
 
       // loop head
-      for(let i =1; i<parseInt(colB)+1;i++){
-        headCol += '<th scope="col">'+"B"+i+'</th>';
+      for (let i = 1; i < parseInt(colB) + 1; i++) {
+        headColB += '<th scope="col">' + "B" + i + '</th>';
       }
       // loop input
-      for(let k =1; k<parseInt(rowB)+1;k++){
-        temp1 += '<tr><th scope="row">'+k+'</th>';
-          for(let u =1; u<parseInt(colB)+1;u++){
-            let inputId="a"+k+u;
-            // console.log(inputId);
-            temp1 += '<td>'+'<input type="text" class="form-control width2" id='+inputId+' value="">'+'</td>';
-          }
-        temp1 += '</tr>';
+      for (let k = 1; k < parseInt(rowB) + 1; k++) {
+        temp2 += '<tr><th scope="row">' + k + '</th>';
+        for (let u = 1; u < parseInt(colB) + 1; u++) {
+          let inputBId = "b" + k + u;
+          // console.log(inputId);
+          temp2 += '<td>' + '<input type="text" class="form-control width2" id=' + inputBId + ' value="">' + '</td>';
+        }
+        temp2 += '</tr>';
       }
-      let bTable = '<div class="col-12 overflow-auto mx-2"><table class="table table-striped"><thead><tr><th scope="col">#</th>'+headCol+ '</tr></thead><tbody>'+temp1+'</tbody></table></div>' ;
+      let bTable = '<div class="col-12 overflow-auto mx-2"><table class="table table-striped table-sm " ><thead><tr><th scope="col">#</th>' + headColB + '</tr></thead><tbody>' + temp2 + '</tbody></table></div>';
       document.getElementById("changableContent2").innerHTML = "";
       document.getElementById("changableContent1").innerHTML = "";
       $('#changableContent1').removeClass("my-5");
@@ -227,11 +243,47 @@
       $('#changableContent1').append('<div class="col-12 mb-2"><button type="button" class="btn btn-primary" onclick="matricesPreparing()">Multiply matrices</button></div>');
 
     }
-    function createTable(){
+
+    function createTable() {
       createTableForMatrixA();
     }
-    function matricesPreparing(){
+    function processMatrixToServer(matrixA, matrixB){
       
+    }
+
+    function matricesPreparing() {
+      let toSendMatrixA = [];
+      let toSendMatrixB = [];
+      let tableAId;
+      let tableBId;
+      // for toSendMatrixA
+      console.log("for loop matrix A");
+      for (var i = 1; i < parseInt(rowA) + 1; i++) {
+        let tempRowForA = [];
+        for (var j = 1; j < parseInt(colA) + 1; j++) {
+          tableAId = "a" + i + j;
+          // console.log(document.getElementById(tableAId).value);
+          tempRowForA.push(document.getElementById(tableAId).value);
+          // console.log(tempRowForA);
+        }
+        toSendMatrixA.push(tempRowForA);
+      }
+      console.log(toSendMatrixA);
+      // for toSendMatrixB
+      console.log("for loop matrix B");
+      for (var i = 1; i < parseInt(rowB) + 1; i++) {
+        let tempRowForB = [];
+        for (var j = 1; j < parseInt(colB) + 1; j++) {
+          tableBId = "b" + i + j;
+          // console.log(document.getElementById(tableAId).value);
+          tempRowForB.push(document.getElementById(tableBId).value);
+          // console.log(tempRowForA);
+        }
+        toSendMatrixB.push(tempRowForB);
+      }
+      console.log(toSendMatrixB);
+
+
     }
   </script>
 </body>
