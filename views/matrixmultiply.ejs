@@ -179,6 +179,8 @@
     var colA;
     var rowB;
     var colB;
+    var rowC;
+    var colC;
 
     function changeBRow() {
       let colAVal = document.getElementById("matrixAColSelect").value;
@@ -205,12 +207,12 @@
         temp1 += '<tr><th scope="row">' + k + '</th>';
         for (let u = 1; u < parseInt(colA) + 1; u++) {
           let inputAId = "a" + k + u;
-          // console.log(inputId);
+          console.log(inputAId);
           temp1 += '<td>' + '<input type="text" class="form-control width2" id=' + inputAId + ' value="">' + '</td>';
         }
         temp1 += '</tr>';
       }
-      let aTable = '<div class="col-12 overflow-auto mx-2"><table class="table table-striped table-sm" ><thead><tr><th scope="col">#</th>' + headColA + '</tr></thead><tbody>' + temp1 + '</tbody></table></div>';
+      let aTable = '<div class="col-12 overflow-auto mx-2"><table class="table table-bordered  table-striped table-sm" ><thead><tr><th scope="col">#</th>' + headColA + '</tr></thead><tbody>' + temp1 + '</tbody></table></div>';
 
       // $('#changableContent1').append(aTable);
       createTableForMatrixB(aTable);
@@ -231,12 +233,12 @@
         temp2 += '<tr><th scope="row">' + k + '</th>';
         for (let u = 1; u < parseInt(colB) + 1; u++) {
           let inputBId = "b" + k + u;
-          // console.log(inputId);
+          console.log(inputBId);
           temp2 += '<td>' + '<input type="text" class="form-control width2" id=' + inputBId + ' value="">' + '</td>';
         }
         temp2 += '</tr>';
       }
-      let bTable = '<div class="col-12 overflow-auto mx-2"><table class="table table-striped table-sm " ><thead><tr><th scope="col">#</th>' + headColB + '</tr></thead><tbody>' + temp2 + '</tbody></table></div>';
+      let bTable = '<div class="col-12 overflow-auto mx-2"><table class="table table-bordered  table-striped table-sm " ><thead><tr><th scope="col">#</th>' + headColB + '</tr></thead><tbody>' + temp2 + '</tbody></table></div>';
       document.getElementById("changableContent2").innerHTML = "";
       document.getElementById("changableContent1").innerHTML = "";
       $('#changableContent1').removeClass("my-5");
@@ -261,7 +263,20 @@
         matrixB : [maB]
       },
       function(data,status){
-        alert("Data: " + data + "\nStatus: " + status);
+
+        let receive = data.result;
+
+        // alert("Dataarray lenght: " + receive.length + "\nStatus: " + status);
+        console.log("dimension result"+rowA+"x"+colB);
+        console.log("status:="+status);
+        for (let i = 0; i < receive.length; i++) {
+          for(let j =0; j<receive[i].length;j++){
+              console.log(receive[i][j]);
+              console.log("");
+          }
+        }
+        document.getElementById("changableContent1").innerHTML = "";
+        createTableForMatrixC(receive);
       });
     }
 
@@ -298,6 +313,30 @@
       console.log(toSendMatrixB);
 
       processMatrixToServer(toSendMatrixA,toSendMatrixB);
+
+    }
+    function createTableForMatrixC(dataArrayToShow) {
+      rowC = rowA;
+      colC = colB;
+      let headColC = "";
+      let temp3 = "";
+
+      // loop head
+      for (let i = 1; i < parseInt(colC) + 1; i++) {
+        headColC += '<th scope="col">' + "C" + i + '</th>';
+      }
+      // loop input
+      for (let k = 1; k < parseInt(rowC) + 1; k++) {
+        temp3 += '<tr><th scope="row">' + k + '</th>';
+        for (let u = 1; u < parseInt(colC) + 1; u++) {
+          // let inputAId = "a" + k + u;
+          // console.log(inputAId);
+          temp3 += '<td>' +  dataArrayToShow[k-1][u-1] + '</td>';
+        }
+        temp3 += '</tr>';
+      }
+      let cTable = '<div class="col-12 overflow-auto mx-2"><table class="table table-bordered  table-striped table-sm" ><thead><tr><th scope="col">#</th>' + headColC + '</tr></thead><tbody>' + temp3 + '</tbody></table></div>';
+      $('#changableContent1').append(cTable);
 
     }
 
