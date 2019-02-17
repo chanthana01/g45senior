@@ -263,7 +263,7 @@
         matrixB : [maB]
       },
       function(data,status){
-
+        let solution = data.solution;
         let receive = data.result;
 
         // alert("Dataarray lenght: " + receive.length + "\nStatus: " + status);
@@ -271,11 +271,15 @@
         console.log("status:="+status);
         for (let i = 0; i < receive.length; i++) {
           for(let j =0; j<receive[i].length;j++){
-              console.log(receive[i][j]);
+              // console.log(receive[i][j]);
+              console.log(solution);
               console.log("");
           }
         }
         document.getElementById("changableContent1").innerHTML = "";
+        $('#changableContent1').append("<h1>Solution</h1>");
+        createSolutionTableForMatrixC(solution);
+        $('#changableContent1').append("<h1>Answer</h1>");
         createTableForMatrixC(receive);
       });
     }
@@ -332,6 +336,30 @@
           // let inputAId = "a" + k + u;
           // console.log(inputAId);
           temp3 += '<td>' +  dataArrayToShow[k-1][u-1] + '</td>';
+        }
+        temp3 += '</tr>';
+      }
+      let cTable = '<div class="col-12 overflow-auto mx-2"><table class="table table-bordered  table-striped table-sm" ><thead><tr><th scope="col">#</th>' + headColC + '</tr></thead><tbody>' + temp3 + '</tbody></table></div>';
+      $('#changableContent1').append(cTable);
+
+    }
+    function createSolutionTableForMatrixC(solutionArray) {
+      rowC = rowA;
+      colC = colB;
+      let headColC = "";
+      let temp3 = "";
+
+      // loop head
+      for (let i = 1; i < parseInt(colC) + 1; i++) {
+        headColC += '<th scope="col">' + "C" + i + '</th>';
+      }
+      // loop input
+      for (let k = 1; k < parseInt(rowC) + 1; k++) {
+        temp3 += '<tr><th scope="row">' + k + '</th>';
+        for (let u = 1; u < parseInt(colC) + 1; u++) {
+          // let inputAId = "a" + k + u;
+          // console.log(inputAId);
+          temp3 += '<td>' +  solutionArray[k-1][u-1] + '</td>';
         }
         temp3 += '</tr>';
       }
