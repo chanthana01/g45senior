@@ -13,6 +13,9 @@ var math = require('mathjs');
 
 
 router.get("/matrixmultiplication", function(req, res, next) {
+  if(req.session.status === undefined){
+    return res.sendStatus(401)
+  }
   res.render('matrixmultiply', {
     status: req.session.status,
     id: req.session.id_Session,
@@ -20,6 +23,9 @@ router.get("/matrixmultiplication", function(req, res, next) {
   });
 });
 router.post("/matrixcalculate", function(req, res, next) {
+  if(req.session.status === undefined){
+    return res.sendStatus(401)
+  }
   // console.log(req.body);
   let matrixBTranpose = math.transpose(req.body.matrixB[0]);
   console.log(Array.isArray(req.body.matrixA[0]));

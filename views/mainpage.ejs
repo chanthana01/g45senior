@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
+  <%
+  let dashboardBt ='';
+  if (name == "admin") {
+    dashboardBt = '<li class="nav-item"><a class="nav-link" href="/admin/dashboard">Dashborad <span class="sr-only">(current)</span></a></li>';
+  }
+  %>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -42,6 +47,7 @@
             <a class="dropdown-item" href="#">Something else here</a>
           </div>
         </li>
+        <%- dashboardBt %>
         <li class="nav-item">
           <a class="nav-link" href="/logout">Log out <span class="sr-only">(current)</span></a>
         </li>
