@@ -85,7 +85,6 @@
                   <h6 class="card-subtitle mb-2 text-muted">Row</h6>
                   <select class="form-control" id="matrixARowSelect">
                     <% for(let i=1;i<=100;i++){ %>
-                    console.log(i);
                     <option value="<%= i %>">
                       <%= i %>
                     </option>
@@ -95,7 +94,6 @@
                   <h6 class="card-subtitle mb-2 text-muted">Column</h6>
                   <select class="form-control" id="matrixAColSelect" onchange=<%="changeBRow()"%>>
                     <% for(let i=1;i<=100;i++){ %>
-                    console.log(i);
                     <option value="<%= i %>">
                       <%= i %>
                     </option>
@@ -115,7 +113,6 @@
                   <h6 class="card-subtitle mb-2 text-muted">Row</h6>
                   <select class="form-control" id="matrixBRowSelect" onchange=<%="changeACol()"%>>
                     <% for(let i=1;i<=100;i++){ %>
-                    console.log(i);
                     <option value="<%= i %>">
                       <%= i %>
                     </option>
@@ -125,7 +122,6 @@
                   <h6 class="card-subtitle mb-2 text-muted">Column</h6>
                   <select class="form-control" id="matrixBColSelect">
                     <% for(let i=1;i<=100;i++){ %>
-                    console.log(i);
                     <option value="<%= i %>">
                       <%= i %>
                     </option>
@@ -212,7 +208,7 @@
         for (let u = 1; u < parseInt(colA) + 1; u++) {
           let inputAId = "a" + k + u;
           console.log(inputAId);
-          temp1 += '<td>' + '<input type="text" class="form-control width2" id=' + inputAId + ' value="">' + '</td>';
+          temp1 += '<td>' + '<input type="text" class="form-control form-control-sm width2" id=' + inputAId + ' value="">' + '</td>';
         }
         temp1 += '</tr>';
       }
@@ -238,7 +234,7 @@
         for (let u = 1; u < parseInt(colB) + 1; u++) {
           let inputBId = "b" + k + u;
           console.log(inputBId);
-          temp2 += '<td>' + '<input type="text" class="form-control width2" id=' + inputBId + ' value="">' + '</td>';
+          temp2 += '<td>' + '<input type="text" class="form-control form-control-sm width2" id=' + inputBId + ' value="">' + '</td>';
         }
         temp2 += '</tr>';
       }

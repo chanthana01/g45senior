@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%
+<%
   let dashboardBt ='';
   if (name == "admin") {
     dashboardBt = '<li class="nav-item"><a class="nav-link" href="/admin/dashboard">Dashborad <span class="sr-only">(current)</span></a></li>';
   }
   %>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -28,7 +29,8 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li>
-          <button type="button" class="btn btn-danger"><%= name  %></button>
+          <button type="button" class="btn btn-danger">
+            <%= name  %></button>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="/landing">Home <span class="sr-only">(current)</span></a>
@@ -51,15 +53,7 @@
         <li class="nav-item">
           <a class="nav-link" href="/logout">Log out <span class="sr-only">(current)</span></a>
         </li>
-
-        <!-- <li class="nav-item">
-        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-      </li> -->
       </ul>
-      <!-- <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form> -->
     </div>
   </nav>
   <div class="container">
@@ -71,7 +65,54 @@
             <h1 class="card-title">Calculate linearequation</h1>
             <h6 class="card-subtitle mb-2 text-muted">Enter input</h6>
 
+            <div class="container" id="equationsInput">
 
+              <div class="row justify-content-center" id="linear1">
+
+                <div class="col-sm-4 col-12">
+                  <div class="input-group ">
+                    <input type="text" class="form-control form-control-sm rounded  " id="equa1X1" placeholder="" name="equa1X1" value="">
+                    <h5>x1</h5>
+
+                    <input type="text" class="form-control form-control-sm rounded " id="equa1X2" placeholder="" name="equa1X2" value="">
+                    <h5>x2</h5>
+
+                    <h5>&nbsp =</h5>
+                    <input type="text" class="form-control form-control-sm rounded " id="equa1Right" placeholder="" name="equa1Right" value="">
+                  </div>
+                </div>
+
+
+
+              </div>
+              <div class="row justify-content-center" id="linear2">
+
+                <div class="col-sm-4 col-12">
+                  <div class="input-group ">
+                    <input type="text" class="form-control form-control-sm rounded  " id="equa2X1" placeholder="" name="equa2X1" value="">
+                    <h5>x1</h5>
+
+                    <input type="text" class="form-control form-control-sm rounded " id="equa2X2" placeholder="" name="equa2X2" value="">
+                    <h5>x2</h5>
+
+                    <h5>&nbsp =</h5>
+                    <input type="text" class="form-control form-control-sm rounded " id="equa2Right" placeholder="" name="equa2XRight" value="">
+                  </div>
+                </div>
+
+
+
+              </div>
+            </div>
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="btn-group" role="group">
+                  <button type="button" class="btn btn-outline-success width2" onclick="addEquation()">+</button>
+                  <button type="button" class="btn btn-outline-danger width2" onclick="delEquation()">-</button>
+                </div>
+              </div>
+
+            </div>
 
 
 
@@ -105,6 +146,43 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    let equationNum = 2;
+
+    function addEquation() {
+      equationNum++;
+      let tempInput = '';
+      document.getElementById("equationsInput").innerHTML = "";
+      for (let i = 1; i <= equationNum; i++) {
+        tempInput += '<div class="row justify-content-center" id="linear' + i + '"><div class="col-sm-4 col-12"><div class="input-group ">';
+        for (let j = 1; j <= equationNum; j++) {
+          tempInput += '<input type="text" class="form-control form-control-sm rounded  " id="equa' + i + 'X' + j + 'name="equa' + i + 'X' + j + '>';
+          tempInput += '<h5>x' + j + '</h5>';
+        }
+        tempInput += '<h5>&nbsp =</h5><input type="text" class="form-control form-control-sm rounded " id="equa' + i + 'Right" name="equa' + i + 'Right"></div></div></div>'
+
+      }
+      $('#equationsInput').append(tempInput);
+    }
+
+    function delEquation() {
+      if(equationNum>2){
+        equationNum--;
+        let tempInput = '';
+        document.getElementById("equationsInput").innerHTML = "";
+        for (let i = 1; i <= equationNum; i++) {
+          tempInput += '<div class="row justify-content-center" id="linear' + i + '"><div class="col-sm-4 col-12"><div class="input-group ">';
+          for (let j = 1; j <= equationNum; j++) {
+            tempInput += '<input type="text" class="form-control form-control-sm rounded  " id="equa' + i + 'X' + j + 'name="equa' + i + 'X' + j + '>';
+            tempInput += '<h5>x' + j + '</h5>';
+          }
+          tempInput += '<h5>&nbsp =</h5><input type="text" class="form-control form-control-sm rounded " id="equa' + i + 'Right" name="equa' + i + 'Right"></div></div></div>'
+
+        }
+        $('#equationsInput').append(tempInput);
+      }
+    }
+  </script>
 </body>
 
 </html>
