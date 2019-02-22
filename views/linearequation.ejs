@@ -69,13 +69,14 @@
 
               <div class="row justify-content-center" id="linear1">
 
-                <div class="col-sm-4 col-12">
+                <div class="col-sm-9 col-12">
                   <div class="input-group ">
+                    <h5>Eq.1 : </h5>
                     <input type="text" class="form-control form-control-sm rounded  " id="equa1X1" placeholder="" name="equa1X1" value="">
-                    <h5>x1</h5>
+                    <h5>x1+</h5>
 
                     <input type="text" class="form-control form-control-sm rounded " id="equa1X2" placeholder="" name="equa1X2" value="">
-                    <h5>x2</h5>
+                    <h5>x2+</h5>
 
                     <h5>&nbsp =</h5>
                     <input type="text" class="form-control form-control-sm rounded " id="equa1Right" placeholder="" name="equa1Right" value="">
@@ -87,16 +88,17 @@
               </div>
               <div class="row justify-content-center" id="linear2">
 
-                <div class="col-sm-4 col-12">
+                <div class="col-sm-9 col-12">
                   <div class="input-group ">
-                    <input type="text" class="form-control form-control-sm rounded  " id="equa2X1" placeholder="" name="equa2X1" value="">
-                    <h5>x1</h5>
+                    <h5>Eq.2 : </h5>
+                    <input type="text" class="form-control form-control-sm rounded width2 " id="equa2X1" placeholder="" name="equa2X1" value="">
+                    <h5>x1+</h5>
 
-                    <input type="text" class="form-control form-control-sm rounded " id="equa2X2" placeholder="" name="equa2X2" value="">
-                    <h5>x2</h5>
+                    <input type="text" class="form-control form-control-sm rounded width2 " id="equa2X2" placeholder="" name="equa2X2" value="">
+                    <h5>x2+</h5>
 
                     <h5>&nbsp =</h5>
-                    <input type="text" class="form-control form-control-sm rounded " id="equa2Right" placeholder="" name="equa2XRight" value="">
+                    <input type="text" class="form-control form-control-sm rounded width2 " id="equa2Right" placeholder="" name="equa2XRight" value="">
                   </div>
                 </div>
 
@@ -104,12 +106,15 @@
 
               </div>
             </div>
-            <div class="container">
-              <div class="row justify-content-center">
+            <div class="container  my-4">
+              <div class="row justify-content-center  my-4">
                 <div class="btn-group" role="group">
                   <button type="button" class="btn btn-outline-success width2" onclick="addEquation()">+</button>
                   <button type="button" class="btn btn-outline-danger width2" onclick="delEquation()">-</button>
                 </div>
+              </div>
+              <div class="row justify-content-center my-4">
+                  <button type="button" class="btn btn-primary" onclick="calculateEquations()">Calculate equations</button>
               </div>
 
             </div>
@@ -146,6 +151,7 @@
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script type="text/javascript">
     let equationNum = 2;
 
@@ -154,12 +160,12 @@
       let tempInput = '';
       document.getElementById("equationsInput").innerHTML = "";
       for (let i = 1; i <= equationNum; i++) {
-        tempInput += '<div class="row justify-content-center" id="linear' + i + '"><div class="col-sm-4 col-12"><div class="input-group ">';
+        tempInput += '<div class="row justify-content-center" id="linear' + i + '"><div class="col-sm-9 col-12"><div class="input-group ">'+'<h5>Eq.'+i+' : </h5>';
         for (let j = 1; j <= equationNum; j++) {
-          tempInput += '<input type="text" class="form-control form-control-sm rounded  " id="equa' + i + 'X' + j + 'name="equa' + i + 'X' + j + '>';
+          tempInput += '<input type="text" class="form-control form-control-sm rounded width2 " id="equa' + i + 'X' + j + '" name="equa' + i + 'X' + j + '" >';
           tempInput += '<h5>x' + j + '</h5>';
         }
-        tempInput += '<h5>&nbsp =</h5><input type="text" class="form-control form-control-sm rounded " id="equa' + i + 'Right" name="equa' + i + 'Right"></div></div></div>'
+        tempInput += '<h5>&nbsp =</h5><input type="text" class="form-control form-control-sm rounded width2 " id="equa' + i + 'Right" name="equa' + i + 'Right"></div></div></div>';
 
       }
       $('#equationsInput').append(tempInput);
@@ -171,15 +177,74 @@
         let tempInput = '';
         document.getElementById("equationsInput").innerHTML = "";
         for (let i = 1; i <= equationNum; i++) {
-          tempInput += '<div class="row justify-content-center" id="linear' + i + '"><div class="col-sm-4 col-12"><div class="input-group ">';
+          tempInput += '<div class="row justify-content-center" id="linear' + i + '"><div class="col-sm-9 col-12"><div class="input-group ">'+'<h5>Eq.'+i+' : </h5>';
           for (let j = 1; j <= equationNum; j++) {
-            tempInput += '<input type="text" class="form-control form-control-sm rounded  " id="equa' + i + 'X' + j + 'name="equa' + i + 'X' + j + '>';
+            tempInput += '<input type="text" class="form-control form-control-sm rounded  width2 " id="equa' + i + 'X' + j + '" name="equa' + i + 'X' + j + '" >';
             tempInput += '<h5>x' + j + '</h5>';
           }
-          tempInput += '<h5>&nbsp =</h5><input type="text" class="form-control form-control-sm rounded " id="equa' + i + 'Right" name="equa' + i + 'Right"></div></div></div>'
+          tempInput += '<h5>&nbsp =</h5><input type="text" class="form-control form-control-sm rounded width2 " id="equa' + i + 'Right" name="equa' + i + 'Right"></div></div></div>'
 
         }
         $('#equationsInput').append(tempInput);
+      }
+    }
+    function calculateEquations(){
+      let matrixEquationToSend=[];
+      let matrixRightSideToSend=[];
+      let allowToCalculate = true;
+      for(let i = 1; i<=equationNum;i++){
+        let arrayEquation=[];
+        for(let j = 1; j<=equationNum;j++){
+          let inputId = "equa"+i+"X"+j;
+          let inputValue = document.getElementById(inputId).value;
+          console.log(inputId);
+          console.log(inputValue);
+          if($.isNumeric(inputValue)){
+            arrayEquation.push(inputValue);
+            console.log("Success push"+"Id "+inputId+":"+inputValue);
+          }
+          else {
+            console.log("Not allowToCalculate B/C inputValue is !isNumeric");
+            allowToCalculate = false;
+          }
+        }
+        if(allowToCalculate){
+          let rightValue = document.getElementById("equa"+i+"Right").value;
+          if($.isNumeric(rightValue)){
+            matrixEquationToSend.push(arrayEquation);
+            matrixRightSideToSend.push(rightValue);
+            console.log(arrayEquation);
+          }
+          else {
+            console.log("Not allowToCalculate B/C RightValue is !isNumeric ");
+            allowToCalculate = false;
+          }
+        }
+      }
+      // send or not send to server
+      if (allowToCalculate) {
+        console.log("Sendding to server..");
+        console.log("matrixEquationToSend:");
+        console.log(matrixEquationToSend);
+        console.log("matrixRightSideToSend")
+        console.log(matrixRightSideToSend);
+        $("#errorMsg").remove();
+        // Sendding
+        $.post("linearequation/calculatelinearequation",
+        {
+          equations : matrixEquationToSend,
+          rightEquation : matrixRightSideToSend
+        },
+        function(data,status){
+          let solution = data.solution;
+          console.log("Solution");
+          console.log(solution);
+        });
+      }
+      else {
+        console.log("Not Sendding to server");
+        $("#errorMsg").remove();
+        $('#equationsInput').append('<h6 id="errorMsg">Error some coefficients is not a number.</h6>');
       }
     }
   </script>

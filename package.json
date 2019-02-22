@@ -14,6 +14,8 @@
     "express-session": "^1.15.6",
     "express-validator": "^5.3.1",
     "http-errors": "~1.6.2",
+    "jsequation-solver": "^1.0.1",
+    "linear-equation-system": "^1.1.1",
     "mathjs": "^5.4.2",
     "mongodb": "^3.1.13",
     "morgan": "~1.9.0"
