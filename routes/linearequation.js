@@ -15,9 +15,9 @@ var linSystem2 = require('jsequation-solver/eq-calc');
 
 
 router.get("/", function(req, res, next) {
-  // if (req.session.status === undefined) {
-  //   return res.sendStatus(401)
-  // }
+  if (req.session.status === undefined) {
+    return res.sendStatus(401)
+  }
   res.render('linearequation', {
     status: req.session.status,
     id: req.session.id_Session,
@@ -25,9 +25,9 @@ router.get("/", function(req, res, next) {
   });
 });
 router.post("/calculatelinearequation", function(req, res, next) {
-  // if (req.session.status === undefined) {
-  //   return res.sendStatus(401)
-  // }
+  if (req.session.status === undefined) {
+    return res.sendStatus(401)
+  }
   let A = req.body.equations;
   let B = req.body.rightEquation;
 
@@ -35,19 +35,30 @@ router.post("/calculatelinearequation", function(req, res, next) {
     return linSystem.solve(a, b);
   }
   let sol = a1(A,B);
+  console.log(sol);
   // failed to calculate by linearSystem begin calculate by LinearSystem2
   if(!sol){
-    let cloneA = A.slice(0);
-    console.log("Second");
-    for (let i = 0; i < cloneA.length; i++) {
-
+    console.log("Second linearSystem");
+    let tempStr = '';
+    for (let i = 0; i < A.length; i++) {
+      console.log(parseFloat(A[i]));
+        tempStr += "["+A[i]+"],";
     }
-    let system2Json = '{"size":'+A.length+',"matrix":['+A+']}';
+    tempStr = tempStr.substring(0, tempStr.length - 1);
+    let system2Json = '{"size":'+A.length+',"matrix":['+tempStr+']}';
     console.log(system2Json);
     sol = linSystem2.eqcalc(system2Json);
-    // sol = linSystem2.eqcalc('{"size":3'+',"matrix":[[22,-10,-12,24],[-10,38,-4,0],[-8,-8,16,0]]}');
+    // console.log(sol);
+    // console.log(sol.length);
+    let solSubstr = [];
+    // console.log(solIndexToSubString);
+    for (let i = 0; i < sol.length; i++) {
+      solSubstr.push(sol[i].substring((sol[i].indexOf('>')+1)).trim());
+    }
+    sol = solSubstr;
     console.log(sol);
   }
+
   res.json({
     solution: sol
   });

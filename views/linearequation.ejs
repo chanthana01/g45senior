@@ -73,10 +73,10 @@
                   <div class="input-group ">
                     <h5>Eq.1 : </h5>
                     <input type="text" class="form-control form-control-sm rounded  " id="equa1X1" placeholder="" name="equa1X1" value="">
-                    <h5>x1+</h5>
+                    <h5>x1</h5>
 
                     <input type="text" class="form-control form-control-sm rounded " id="equa1X2" placeholder="" name="equa1X2" value="">
-                    <h5>x2+</h5>
+                    <h5>x2</h5>
 
                     <h5>&nbsp =</h5>
                     <input type="text" class="form-control form-control-sm rounded " id="equa1Right" placeholder="" name="equa1Right" value="">
@@ -92,10 +92,10 @@
                   <div class="input-group ">
                     <h5>Eq.2 : </h5>
                     <input type="text" class="form-control form-control-sm rounded width2 " id="equa2X1" placeholder="" name="equa2X1" value="">
-                    <h5>x1+</h5>
+                    <h5>x1</h5>
 
                     <input type="text" class="form-control form-control-sm rounded width2 " id="equa2X2" placeholder="" name="equa2X2" value="">
-                    <h5>x2+</h5>
+                    <h5>x2</h5>
 
                     <h5>&nbsp =</h5>
                     <input type="text" class="form-control form-control-sm rounded width2 " id="equa2Right" placeholder="" name="equa2XRight" value="">
@@ -200,7 +200,7 @@
           console.log(inputId);
           console.log(inputValue);
           if($.isNumeric(inputValue)){
-            arrayEquation.push(inputValue);
+            arrayEquation.push(parseFloat(inputValue));
             console.log("Success push"+"Id "+inputId+":"+inputValue);
           }
           else {
@@ -229,6 +229,8 @@
         console.log("matrixRightSideToSend")
         console.log(matrixRightSideToSend);
         $("#errorMsg").remove();
+        $("#h1Result").remove();
+        $("#toShowSol").remove();
         // Sendding
         $.post("linearequation/calculatelinearequation",
         {
@@ -239,6 +241,14 @@
           let solution = data.solution;
           console.log("Solution");
           console.log(solution);
+          let toShowSol = [];
+          for (let i = 0; i < data.solution.length; i++) {
+            toShowSol.push("x"+i+" = "+data.solution[i]);
+          }
+
+          $('#equationsInput').append('<h2 id="h1Result">Result</h1>');
+          $('#equationsInput').append('<h4 id="toShowSol">'+toShowSol+'</h4>');
+
         });
       }
       else {
