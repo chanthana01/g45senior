@@ -15,6 +15,7 @@ var adminRouter = require('./routes/admin');
 var matrixRouter = require('./routes/matrix');
 var normRouter = require('./routes/norm');
 var linearEquationRouter = require('./routes/linearequation');
+var interpolationRouter = require('./routes/interpolation');
 
 var app = express();
 
@@ -36,6 +37,7 @@ app.use('/admin', adminRouter);
 app.use('/matrix', matrixRouter);
 app.use('/norm',normRouter);
 app.use('/linearequation',linearEquationRouter);
+app.use('/interpolation',interpolationRouter);
 
 
 // catch 404 and forward to error handler
