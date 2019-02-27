@@ -14,9 +14,9 @@ var interpolatingPolynomial = require('interpolating-polynomial');
 
 
 router.get("/", function(req, res, next) {
-  // if (req.session.status === undefined) {
-  //   return res.sendStatus(401)
-  // }
+  if (req.session.status === undefined) {
+    return res.sendStatus(401)
+  }
   res.render('interpolation', {
     status: req.session.status,
     id: req.session.id_Session,
@@ -25,9 +25,9 @@ router.get("/", function(req, res, next) {
 });
 router.post("/calculateinterpolation", function(req, res, next) {
   console.log(req.body);
-  // if(req.session.status === undefined){
-  //   return res.sendStatus(401)
-  // }
+  if(req.session.status === undefined){
+    return res.sendStatus(401)
+  }
   let toProcessDataArray = [];
   for (let i = 0; i < req.body.coordinateArray.length; i++) {
     let tempArray = [];
@@ -42,13 +42,18 @@ router.post("/calculateinterpolation", function(req, res, next) {
   let f = interpolatingPolynomial(toProcessDataArray);
   let ansArray = [];
   let isInvalid = false;
+  let x = [];
   for (let i = parseFloat(req.body.minX); i <= parseFloat(req.body.maxX); i += 0.1) {
+    x.push(i);
     ansArray.push(f(i));
   }
 
-  if(ansArray[0]!=='number'){isInvalid=true;}
+// console.log(isFinite(ansArray[0]));
+
+  if(!isFinite(ansArray[0])){isInvalid=true;}
   res.json({
     solution: ansArray,
+    x:x,
     isInvalid: isInvalid
   });
 });

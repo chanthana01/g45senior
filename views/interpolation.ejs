@@ -44,7 +44,7 @@
             <a class="dropdown-item" href="/matrix/matrixmultiplication">Matrix Multiplication</a>
             <a class="dropdown-item" href="/norm">Norm calculator</a>
             <a class="dropdown-item" href="/linearequation">Linear equation calculator</a>
-            <a class="dropdown-item" href="#">Content4</a>
+            <a class="dropdown-item" href="/interpolation">Interpolation</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Something else here</a>
           </div>
@@ -96,12 +96,23 @@
             </div>
             <div class="row justify-content-center  my-4">
               <div class="btn-group" role="group">
+                <label>Min X:</label>
+                <input type="text" class="form-control form-control-sm rounded width2" id="minX"  name="coor3" value="-2">
+                <label>Max X:</label>
+                <input type="text" class="form-control form-control-sm rounded width2" id="maxX"  name="coor3" value="2">
+              </div>
+            </div>
+            <div class="row justify-content-center  my-4">
+              <div class="btn-group" role="group">
                 <button type="button" class="btn btn-outline-success width2" onclick="addCoor()">+</button>
                 <button type="button" class="btn btn-outline-danger width2" onclick="delCoor()">-</button>
               </div>
             </div>
             <div class="row justify-content-center my-4">
               <button type="button" class="btn btn-primary" onclick="calculateCoordinates()">Interpolate</button>
+            </div>
+            <div class="row justify-content-center my-5" id="rowGraph">
+              <canvas id="graph" ></canvas>
             </div>
 
 
@@ -138,6 +149,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+
   <script type="text/javascript">
     let coorNum = 3;
 
@@ -222,14 +235,17 @@
       // sendding data to server
       if (allowTosend) {
 
+        let minX = document.getElementById('minX').value;
+        let maxX = document.getElementById('maxX').value;
         $.post("interpolation/calculateinterpolation", {
             coordinateArray: toSendArray,
-            minX: -2,
-            maxX: 2
+            minX: minX,
+            maxX: maxX
 
           },
           function(data, status) {
             let solution = data.solution;
+            let x = data.x;
             let isInvalid = data.isInvalid;
             console.log("isInvalid := "+isInvalid);
             console.log("Solution := ");
@@ -240,9 +256,52 @@
             if(isInvalid){
               document.getElementById("errorMsg").append("Error!!");
             }
+            else {
+              document.getElementById('graph').remove();
+                callbackFunc(x,solution,drawGraph);
+            }
           });
 
       }
+    }
+    function callbackFunc(x,solution,callback) {
+      $('#rowGraph').append('<canvas id="graph" ></canvas>');
+      callback(x,solution);
+    }
+    function drawGraph(x,solution){
+      var myChart;
+      var ctx;
+      ctx = document.getElementById('graph').getContext('2d');
+      myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+              labels: x,
+              datasets: [{
+                  label: '',
+                  fill: false,
+                  data: solution,
+
+                  // borderColor: [
+                  //     'rgba(255,99,132,1)'
+                  //
+                  // ],
+                  borderWidth: 1
+              }]
+          },
+          options: {
+              scales: {
+                  yAxes: [{
+                      ticks: {
+                          beginAtZero:false
+                      }
+                  }]
+              },
+              legend: {
+                display: false
+              }
+          }
+      });
+
     }
   </script>
 </body>
