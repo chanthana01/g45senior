@@ -73,7 +73,7 @@
                   <div class="input-group ">
                     <h5>Eq.1 : </h5>
                     <input type="text" class="form-control form-control-sm rounded  " id="equa1X1" placeholder="" name="equa1X1" value="">
-                    <h5>x1</h5>
+                    <h5>x1+</h5>
 
                     <input type="text" class="form-control form-control-sm rounded " id="equa1X2" placeholder="" name="equa1X2" value="">
                     <h5>x2</h5>
@@ -92,7 +92,7 @@
                   <div class="input-group ">
                     <h5>Eq.2 : </h5>
                     <input type="text" class="form-control form-control-sm rounded width2 " id="equa2X1" placeholder="" name="equa2X1" value="">
-                    <h5>x1</h5>
+                    <h5>x1+</h5>
 
                     <input type="text" class="form-control form-control-sm rounded width2 " id="equa2X2" placeholder="" name="equa2X2" value="">
                     <h5>x2</h5>
@@ -162,8 +162,14 @@
       for (let i = 1; i <= equationNum; i++) {
         tempInput += '<div class="row justify-content-center" id="linear' + i + '"><div class="col-sm-9 col-12"><div class="input-group ">'+'<h5>Eq.'+i+' : </h5>';
         for (let j = 1; j <= equationNum; j++) {
-          tempInput += '<input type="text" class="form-control form-control-sm rounded width2 " id="equa' + i + 'X' + j + '" name="equa' + i + 'X' + j + '" >';
-          tempInput += '<h5>x' + j + '</h5>';
+          if(j==equationNum){
+            tempInput += '<input type="text" class="form-control form-control-sm rounded  width2 " id="equa' + i + 'X' + j + '" name="equa' + i + 'X' + j + '" >';
+            tempInput += '<h5>x' + j + '</h5>';
+          }
+          else {
+            tempInput += '<input type="text" class="form-control form-control-sm rounded  width2 " id="equa' + i + 'X' + j + '" name="equa' + i + 'X' + j + '" >';
+            tempInput += '<h5>x' + j + '+</h5>';
+          }
         }
         tempInput += '<h5>&nbsp =</h5><input type="text" class="form-control form-control-sm rounded width2 " id="equa' + i + 'Right" name="equa' + i + 'Right"></div></div></div>';
 
@@ -179,8 +185,14 @@
         for (let i = 1; i <= equationNum; i++) {
           tempInput += '<div class="row justify-content-center" id="linear' + i + '"><div class="col-sm-9 col-12"><div class="input-group ">'+'<h5>Eq.'+i+' : </h5>';
           for (let j = 1; j <= equationNum; j++) {
-            tempInput += '<input type="text" class="form-control form-control-sm rounded  width2 " id="equa' + i + 'X' + j + '" name="equa' + i + 'X' + j + '" >';
-            tempInput += '<h5>x' + j + '</h5>';
+            if(j==equationNum){
+              tempInput += '<input type="text" class="form-control form-control-sm rounded  width2 " id="equa' + i + 'X' + j + '" name="equa' + i + 'X' + j + '" >';
+              tempInput += '<h5>x' + j + '</h5>';
+            }
+            else {
+              tempInput += '<input type="text" class="form-control form-control-sm rounded  width2 " id="equa' + i + 'X' + j + '" name="equa' + i + 'X' + j + '" >';
+              tempInput += '<h5>x' + j + '+</h5>';
+            }
           }
           tempInput += '<h5>&nbsp =</h5><input type="text" class="form-control form-control-sm rounded width2 " id="equa' + i + 'Right" name="equa' + i + 'Right"></div></div></div>'
 
