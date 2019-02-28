@@ -290,6 +290,7 @@
       let toSendMatrixB = [];
       let tableAId;
       let tableBId;
+      let allowToSend = true;
       // for toSendMatrixA
       console.log("for loop matrix A");
       for (let i = 1; i < parseInt(rowA) + 1; i++) {
@@ -297,10 +298,18 @@
         for (let j = 1; j < parseInt(colA) + 1; j++) {
           tableAId = "a" + i + j;
           // console.log(document.getElementById(tableAId).value);
-          tempRowForA.push(document.getElementById(tableAId).value);
-          console.log(tempRowForA);
+          if (!isFinite(document.getElementById(tableAId).value)) {
+            allowToSend = false;
+            break;
+          }
+          else{
+            tempRowForA.push(document.getElementById(tableAId).value);
+            console.log(tempRowForA);
+          }
         }
-        toSendMatrixA.push(tempRowForA);
+        if(allowToSend){
+          toSendMatrixA.push(tempRowForA);
+        }
       }
       console.log(toSendMatrixA);
       // for toSendMatrixB
@@ -309,15 +318,27 @@
         let tempRowForB = [];
         for (let j = 1; j < parseInt(colB) + 1; j++) {
           tableBId = "b" + i + j;
-          // console.log(document.getElementById(tableAId).value);
-          tempRowForB.push(document.getElementById(tableBId).value);
-          // console.log(tempRowForA);
+          if (!isFinite(document.getElementById(tableBId).value)) {
+            allowToSend = false;
+            break;
+          }
+          else{
+            tempRowForB.push(document.getElementById(tableBId).value);
+            console.log(tempRowForB);
+          }
         }
-        toSendMatrixB.push(tempRowForB);
+        if(allowToSend){
+          toSendMatrixB.push(tempRowForB);
+        }
       }
       console.log(toSendMatrixB);
 
-      processMatrixToServer(toSendMatrixA,toSendMatrixB);
+      if(allowToSend){
+        processMatrixToServer(toSendMatrixA,toSendMatrixB);
+      }
+      else {
+        $('#changableContent1').append("<h1>Error some input is not a number.</h1>");
+      }
 
     }
     function createTableForMatrixC(dataArrayToShow) {
