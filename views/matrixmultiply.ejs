@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-  <%
+<%
   let dashboardBt ='';
   if (name == "admin") {
-    dashboardBt = '<li class="nav-item"><a class="nav-link" href="/admin/dashboard">Dashborad <span class="sr-only">(current)</span></a></li>';
+    dashboardBt = '<li class="nav-item"><a class="nav-link" href="/admin/dashboard">Dashboard <span class="sr-only">(current)</span></a></li>';
   }
   %>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -28,7 +29,8 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li>
-          <button type="button" class="btn btn-danger"><%= name  %></button>
+          <button type="button" class="btn btn-danger">
+            <%= name  %></button>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="/landing">Home <span class="sr-only">(current)</span></a>
@@ -39,7 +41,7 @@
             Content
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/matrix/matrixmultiplication">Matrix Multiplication</a>
+            <a class="dropdown-item" href="/matrix/matrixmultiplication">Matrix Review</a>
             <a class="dropdown-item" href="/norm">Norm calculator</a>
             <a class="dropdown-item" href="/linearequation">Linear equation calculator</a>
             <a class="dropdown-item" href="/interpolation">Interpolation</a>
@@ -73,11 +75,106 @@
     <h6 class="display-6">Welcome .. (Some user info)</h1>
   </div> -->
   <div class="container">
+
     <div class="row my-5 ">
       <div class="col-12">
+
         <div class="card">
+
+          <div class="col-12 my-3">
+            <div class="">
+              <div class="">
+
+
+
+                <h1 class="card-title">Matrix Review</h1>
+                <hr>
+                <br>
+
+
+
+                <li>
+                  <h6 class="card-subtitle mb-2">A matrix is a rectangular array of (real/complex) numbers.</h6>
+                </li>
+                <li>
+                  <h6 class="card-subtitle mb-2">Each number is called an entry or an element.</h6>
+                </li>
+                <li>
+                  <h6 class="card-subtitle mb-2">Use R<sup>mxn</sup> to denote the set of all matrices with real entries having m rows and n columns.</h6>
+                </li>
+                <br>
+                <h3 class="card-subtitle mb-2 text-muted">1. Matrix Operation</h3>
+                <hr>
+
+                <h4 class="card-subtitle mb-2">i) Addition</h4>
+                <br>
+                <h6 class="card-subtitle mb-2"> If A and B are m-by-n matrices, C = A+B is a m-by n matrix with</h6>
+                <br>
+                <h6 class="card-subtitle mb-2">
+                  <center>C<sub>ij</sub> = a<sub>ij</sub> +b<sub>ij</sub> </center>
+                </h6>
+                <br>
+                <h4 class="card-subtitle mb-2">ii) Subtraction</h4>
+                <br>
+                <h6 class="card-subtitle mb-2"> If A and B are m-by-n matrices, C = A-B is a m-by n matrix with</h6>
+                <br>
+                <h6 class="card-subtitle mb-2">
+                  <center>C<sub>ij</sub> = a<sub>ij</sub> -b<sub>ij</sub> </center>
+                </h6>
+                <br>
+                <h4 class="card-subtitle mb-2">iii) Multiplication</h4>
+                <br>
+                <h5 class="card-subtitle mb-2">Scalar-Matrix Multiplication :</h6>
+                  <br>
+                  <h6 class="card-subtitle mb-2"> If A is a matrix and α is a scalar, then C = αA has the entries</h6>
+                  <br>
+                  <h6 class="card-subtitle mb-2">
+                    <center>C<sub>ij</sub> = αa<sub>ij</sub> </center>
+                  </h6>
+                  <br>
+                  <h5 class="card-subtitle mb-2">Matrix-Matrix Multiplication :</h6>
+                    <br>
+                    <h6 class="card-subtitle mb-2"> If A is m-by-p matrix and B is p-byn matrix, C = AB is a m-by-n matrix</h6>
+
+
+                    <div class="row justify-content-around my-5 margin-15" id="changableContent2">
+
+                      <div class="card">
+                        <div class="card-body">
+                          <h6 class="card-subtitle mb-2 text-muted">Note that:</h6>
+                          <li>
+                            <h6 class="card-subtitle mb-2"> The number of columns of the 1<sup>st</sup> matrix must equal to the number of rows of the 2<sup>nd</sup> one.</h6>
+                          </li>
+                          <li>
+                            <h6 class="card-subtitle mb-2">Multiplying a matrix of 'm' x 'p' by 'p' x 'n' size will result a new matrix with 'm' x 'n' dimension.</h6>
+                          </li>
+                          <li>
+                            <h6 class="card-subtitle mb-2">AB ≠ BA</h6>
+                          </li>
+                        </div>
+
+                      </div>
+                    </div>
+
+
+
+                    <br>
+                    <h3 class="card-subtitle mb-2 text-muted">2. Matrix Multiplication Calculator</h3>
+                    <hr>
+                    <h5 class="card-subtitle mb-2">To understand Matrix-Matrix Multiplication better input any example and examine the solution.</h5>
+              </div>
+
+            </div>
+
+          </div>
+
+
+
           <div class="row justify-content-around my-5 margin-15" id="changableContent2">
+
+
             <div class="col-sm-5 col-12">
+
               <div class="card">
                 <div class="card-body">
                   <h1 class="card-title">Matrix A</h1>
@@ -92,7 +189,7 @@
                   </select>
                   <br>
                   <h6 class="card-subtitle mb-2 text-muted">Column</h6>
-                  <select class="form-control" id="matrixAColSelect" onchange=<%="changeBRow()"%>>
+                  <select class="form-control" id="matrixAColSelect" onchange=<%="changeBRow()" %>>
                     <% for(let i=1;i<=100;i++){ %>
                     <option value="<%= i %>">
                       <%= i %>
@@ -111,7 +208,7 @@
                   <h1 class="card-title">Matrix B</h1>
                   <h6 class="card-subtitle mb-2 text-muted">Enter dimension of Matrix B</h6>
                   <h6 class="card-subtitle mb-2 text-muted">Row</h6>
-                  <select class="form-control" id="matrixBRowSelect" onchange=<%="changeACol()"%>>
+                  <select class="form-control" id="matrixBRowSelect" onchange=<%="changeACol()" %>>
                     <% for(let i=1;i<=100;i++){ %>
                     <option value="<%= i %>">
                       <%= i %>
@@ -253,36 +350,36 @@
     function createTable() {
       createTableForMatrixA();
     }
-    function processMatrixToServer(maA, maB){
+
+    function processMatrixToServer(maA, maB) {
 
       console.log(maA);
       console.log(maB);
-      $.post("matrixcalculate",
-      {
-        matrixA : [maA],
-        matrixB : [maB]
-      },
-      function(data,status){
-        let solution = data.solution;
-        let receive = data.result;
+      $.post("matrixcalculate", {
+          matrixA: [maA],
+          matrixB: [maB]
+        },
+        function(data, status) {
+          let solution = data.solution;
+          let receive = data.result;
 
-        // alert("Dataarray lenght: " + receive.length + "\nStatus: " + status);
-        console.log("dimension result"+rowA+"x"+colB);
-        console.log("status:="+status);
-        for (let i = 0; i < receive.length; i++) {
-          for(let j =0; j<receive[i].length;j++){
+          // alert("Dataarray lenght: " + receive.length + "\nStatus: " + status);
+          console.log("dimension result" + rowA + "x" + colB);
+          console.log("status:=" + status);
+          for (let i = 0; i < receive.length; i++) {
+            for (let j = 0; j < receive[i].length; j++) {
               // console.log(receive[i][j]);
               console.log(solution);
               console.log("");
+            }
           }
-        }
-        document.getElementById("changableContent1").innerHTML = "";
-        $('#changableContent1').append("<h1>Solution</h1>");
-        createSolutionTableForMatrixC(solution);
-        $('#changableContent1').append("<h1>Answer</h1>");
-        createTableForMatrixC(receive);
-        $('#changableContent1').append('<a href="/matrix/matrixmultiplication"  class="btn btn-primary">Go back</a>');
-      });
+          document.getElementById("changableContent1").innerHTML = "";
+          $('#changableContent1').append("<h1>Solution</h1>");
+          createSolutionTableForMatrixC(solution);
+          $('#changableContent1').append("<h1>Answer</h1>");
+          createTableForMatrixC(receive);
+          $('#changableContent1').append('<a href="/matrix/matrixmultiplication"  class="btn btn-primary">Go back</a>');
+        });
     }
 
     function matricesPreparing() {
@@ -302,12 +399,16 @@
             allowToSend = false;
             break;
           }
-          else{
+          else if(document.getElementById(tableAId).value == ""){
+            allowToSend = false;
+            break;
+          }
+          else {
             tempRowForA.push(document.getElementById(tableAId).value);
             console.log(tempRowForA);
           }
         }
-        if(allowToSend){
+        if (allowToSend) {
           toSendMatrixA.push(tempRowForA);
         }
       }
@@ -321,26 +422,25 @@
           if (!isFinite(document.getElementById(tableBId).value)) {
             allowToSend = false;
             break;
-          }
-          else{
+          } else {
             tempRowForB.push(document.getElementById(tableBId).value);
             console.log(tempRowForB);
           }
         }
-        if(allowToSend){
+        if (allowToSend) {
           toSendMatrixB.push(tempRowForB);
         }
       }
       console.log(toSendMatrixB);
 
-      if(allowToSend){
-        processMatrixToServer(toSendMatrixA,toSendMatrixB);
-      }
-      else {
+      if (allowToSend) {
+        processMatrixToServer(toSendMatrixA, toSendMatrixB);
+      } else {
         $('#changableContent1').append("<h1>Error some input is not a number.</h1>");
       }
 
     }
+
     function createTableForMatrixC(dataArrayToShow) {
       rowC = rowA;
       colC = colB;
@@ -357,7 +457,7 @@
         for (let u = 1; u < parseInt(colC) + 1; u++) {
           // let inputAId = "a" + k + u;
           // console.log(inputAId);
-          temp3 += '<td>' +  dataArrayToShow[k-1][u-1] + '</td>';
+          temp3 += '<td>' + dataArrayToShow[k - 1][u - 1] + '</td>';
         }
         temp3 += '</tr>';
       }
@@ -365,6 +465,7 @@
       $('#changableContent1').append(cTable);
 
     }
+
     function createSolutionTableForMatrixC(solutionArray) {
       rowC = rowA;
       colC = colB;
@@ -381,7 +482,7 @@
         for (let u = 1; u < parseInt(colC) + 1; u++) {
           // let inputAId = "a" + k + u;
           // console.log(inputAId);
-          temp3 += '<td>' +  solutionArray[k-1][u-1] + '</td>';
+          temp3 += '<td>' + solutionArray[k - 1][u - 1] + '</td>';
         }
         temp3 += '</tr>';
       }
@@ -389,7 +490,6 @@
       $('#changableContent1').append(cTable);
 
     }
-
   </script>
 </body>
 
