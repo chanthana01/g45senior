@@ -93,15 +93,21 @@
 
 
 
-                <li>
-                  <h6 class="card-subtitle mb-2">A matrix is a rectangular array of (real/complex) numbers.</h6>
-                </li>
-                <li>
-                  <h6 class="card-subtitle mb-2">Each number is called an entry or an element.</h6>
-                </li>
-                <li>
-                  <h6 class="card-subtitle mb-2">Use R<sup>mxn</sup> to denote the set of all matrices with real entries having m rows and n columns.</h6>
-                </li>
+
+                <h6 class="card-subtitle mb-2">
+                  <li>A matrix is a rectangular array of (real/complex) numbers.</li>
+                </h6>
+
+
+                <h6 class="card-subtitle mb-2">
+                  <li>Each number is called an entry or an element.</li>
+                </h6>
+
+
+                <h6 class="card-subtitle mb-2">
+                  <li>Use R<sup>mxn</sup> to denote the set of all matrices with real entries having m rows and n columns.</li>
+                </h6>
+
                 <br>
                 <h3 class="card-subtitle mb-2 text-muted">1. Matrix Operation</h3>
                 <hr>
@@ -142,15 +148,19 @@
                       <div class="card">
                         <div class="card-body">
                           <h6 class="card-subtitle mb-2 text-muted">Note that:</h6>
-                          <li>
-                            <h6 class="card-subtitle mb-2"> The number of columns of the 1<sup>st</sup> matrix must equal to the number of rows of the 2<sup>nd</sup> one.</h6>
-                          </li>
-                          <li>
-                            <h6 class="card-subtitle mb-2">Multiplying a matrix of 'm' x 'p' by 'p' x 'n' size will result a new matrix with 'm' x 'n' dimension.</h6>
-                          </li>
-                          <li>
-                            <h6 class="card-subtitle mb-2">AB ≠ BA</h6>
-                          </li>
+                          <br>
+                          <h6 class="card-subtitle mb-2">
+                            <li> The number of columns of the 1<sup>st</sup> matrix must equal to the number of rows of the 2<sup>nd</sup> one.</li>
+                          </h6>
+
+                          <h6 class="card-subtitle mb-2">
+                            <li>Multiplying a matrix of 'm' x 'p' by 'p' x 'n' size will result a new matrix with 'm' x 'n' dimension.</li>
+                          </h6>
+
+                          <h6 class="card-subtitle mb-2">
+                            <li>AB ≠ BA</li>
+                          </h6>
+
                         </div>
 
                       </div>
@@ -398,12 +408,10 @@
           if (!isFinite(document.getElementById(tableAId).value)) {
             allowToSend = false;
             break;
-          }
-          else if(document.getElementById(tableAId).value == ""){
+          } else if (document.getElementById(tableAId).value == "") {
             allowToSend = false;
             break;
-          }
-          else {
+          } else {
             tempRowForA.push(document.getElementById(tableAId).value);
             console.log(tempRowForA);
           }
