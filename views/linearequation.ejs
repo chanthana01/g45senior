@@ -41,9 +41,9 @@
             Content
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/matrix/matrixmultiplication">Matrix Multiplication</a>
-            <a class="dropdown-item" href="/norm">Norm calculator</a>
-            <a class="dropdown-item" href="/linearequation">Linear equation calculator</a>
+            <a class="dropdown-item" href="/matrix/matrixmultiplication">Matrix Review</a>
+            <a class="dropdown-item" href="/norm">Norm</a>
+            <a class="dropdown-item" href="/linearequation">Systems of Linear Equations</a>
             <a class="dropdown-item" href="/interpolation">Interpolation</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Something else here</a>
@@ -61,10 +61,96 @@
 
       <div class="col-12">
         <div class="card">
-          <div class="card-body">
-            <h1 class="card-title">Calculate linearequation</h1>
-            <h6 class="card-subtitle mb-2 text-muted">Enter input</h6>
 
+          <div class="col-12 my-3">
+            <div class="">
+              <div class="">
+
+
+
+                <h1 class="card-title">Systems of Linear Equations</h1>
+                <hr>
+                <br>
+
+
+                <h6 class="card-subtitle mb-2">Normally we solve systems of linear equations using "elimination" ... but now we are going to solve it using Matrices.</h6>
+                <br>
+                <center><img src="/images/linear-eg.jpg" width="300" height="140" class=" " alt=""></center>
+                <br>
+                <h6 class="card-subtitle mb-2">The linear equations systems can be rewrite in a matrix in form of: </h6>
+                <br>
+                <h6 class="card-subtitle mb-2">
+                  <center>AX= B </center>
+                </h6>
+                <br>
+                <h6 class="card-subtitle mb-2">From the given example, the matrix is shown below:</h6>
+                <br>
+
+                <center><img src="/images/linear-eg2.jpg" width="250" height="80" class=" " alt=""></center>
+
+                <div class="row justify-content-around my-5 margin-15" id="changableContent2">
+                  <div class="card">
+                    <div class="card-body">
+
+                      <h6 class="card-subtitle mb-2 text-muted">where,</h6>
+                      <br>
+                      <h6 class="card-subtitle mb-2 text-muted">
+                        <li>A is the 3x3 matrix of x<sub>1</sub>, x<sub>2</sub> and x<sub>3</sub> coefficients.</li>
+                      </h6>
+                      <br>
+                      <h6 class="card-subtitle mb-2 text-muted">
+                        <li>X is x<sub>1</sub>, x<sub>2</sub> and x<sub>3</sub>. </li>
+                      </h6>
+                      <br>
+                      <h6 class="card-subtitle mb-2 text-muted">
+                        <li>B is 6, −4 and 27. </li>
+                      </h6>
+                    </div>
+                  </div>
+                </div>
+
+                <h6 class="card-subtitle mb-2 ">Next, find the value of X in form of:</h6>
+                <br>
+                <h6 class="card-subtitle mb-2">
+                  <center>X= A<sup>-1</sup>B </center>
+                </h6>
+                <br>
+                <h6 class="card-subtitle mb-2 ">With the inverse of A:</h6>
+                <br>
+                <center><img src="/images/linear-eg3.jpg" width="300" height="80" class=" " alt=""></center>
+                <br>
+                <h6 class="card-subtitle mb-2 ">Then by multiplying the inverse of the A matrix by the B matrix, the X matrix is calculated:</h6>
+                <br>
+
+                <center><img src="/images/linear-eg4.jpg" width="510" height="80" class=" " alt=""></center>
+                <br>
+                <br>
+                <h6 class="card-subtitle mb-2 ">Thus x<sub>1</sub>, x<sub>2</sub> and x<sub>3</sub> are 5, 3 and -2, respectively.</h6>
+
+
+                <br>
+
+                <br>
+                <h3 class="card-subtitle mb-2 text-muted">System of Linear Equation Calculator</h3>
+                <hr>
+                <h5 class="card-subtitle mb-2">Try solving systems of linear equations yourself and check the solution with the calculator below</h5>
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+
+
+          <div class="card-body">
+            <h1 class="card-title">Calculate Linear Equations</h1>
+            <br>
+            <h4 class="card-subtitle mb-2 text-muted">Enter inputs</h4>
+
+            <h6 class="card-subtitle mb-2 text-muted">Click on "+" button to add more equations</h6>
+            <br>
             <div class="container" id="equationsInput">
 
               <div class="row justify-content-center" id="linear1">
@@ -114,7 +200,7 @@
                 </div>
               </div>
               <div class="row justify-content-center my-4">
-                  <button type="button" class="btn btn-primary" onclick="calculateEquations()">Calculate equations</button>
+                <button type="button" class="btn btn-primary" onclick="calculateEquations()">Calculate equations</button>
               </div>
 
             </div>
@@ -160,13 +246,12 @@
       let tempInput = '';
       document.getElementById("equationsInput").innerHTML = "";
       for (let i = 1; i <= equationNum; i++) {
-        tempInput += '<div class="row justify-content-center" id="linear' + i + '"><div class="col-sm-9 col-12"><div class="input-group ">'+'<h5>Eq.'+i+' : </h5>';
+        tempInput += '<div class="row justify-content-center" id="linear' + i + '"><div class="col-sm-9 col-12"><div class="input-group ">' + '<h5>Eq.' + i + ' : </h5>';
         for (let j = 1; j <= equationNum; j++) {
-          if(j==equationNum){
+          if (j == equationNum) {
             tempInput += '<input type="text" class="form-control form-control-sm rounded  width2 " id="equa' + i + 'X' + j + '" name="equa' + i + 'X' + j + '" >';
             tempInput += '<h5>x' + j + '</h5>';
-          }
-          else {
+          } else {
             tempInput += '<input type="text" class="form-control form-control-sm rounded  width2 " id="equa' + i + 'X' + j + '" name="equa' + i + 'X' + j + '" >';
             tempInput += '<h5>x' + j + '+</h5>';
           }
@@ -178,18 +263,17 @@
     }
 
     function delEquation() {
-      if(equationNum>2){
+      if (equationNum > 2) {
         equationNum--;
         let tempInput = '';
         document.getElementById("equationsInput").innerHTML = "";
         for (let i = 1; i <= equationNum; i++) {
-          tempInput += '<div class="row justify-content-center" id="linear' + i + '"><div class="col-sm-9 col-12"><div class="input-group ">'+'<h5>Eq.'+i+' : </h5>';
+          tempInput += '<div class="row justify-content-center" id="linear' + i + '"><div class="col-sm-9 col-12"><div class="input-group ">' + '<h5>Eq.' + i + ' : </h5>';
           for (let j = 1; j <= equationNum; j++) {
-            if(j==equationNum){
+            if (j == equationNum) {
               tempInput += '<input type="text" class="form-control form-control-sm rounded  width2 " id="equa' + i + 'X' + j + '" name="equa' + i + 'X' + j + '" >';
               tempInput += '<h5>x' + j + '</h5>';
-            }
-            else {
+            } else {
               tempInput += '<input type="text" class="form-control form-control-sm rounded  width2 " id="equa' + i + 'X' + j + '" name="equa' + i + 'X' + j + '" >';
               tempInput += '<h5>x' + j + '+</h5>';
             }
@@ -200,34 +284,33 @@
         $('#equationsInput').append(tempInput);
       }
     }
-    function calculateEquations(){
-      let matrixEquationToSend=[];
-      let matrixRightSideToSend=[];
+
+    function calculateEquations() {
+      let matrixEquationToSend = [];
+      let matrixRightSideToSend = [];
       let allowToCalculate = true;
-      for(let i = 1; i<=equationNum;i++){
-        let arrayEquation=[];
-        for(let j = 1; j<=equationNum;j++){
-          let inputId = "equa"+i+"X"+j;
+      for (let i = 1; i <= equationNum; i++) {
+        let arrayEquation = [];
+        for (let j = 1; j <= equationNum; j++) {
+          let inputId = "equa" + i + "X" + j;
           let inputValue = document.getElementById(inputId).value;
           console.log(inputId);
           console.log(inputValue);
-          if($.isNumeric(inputValue)){
+          if ($.isNumeric(inputValue)) {
             arrayEquation.push(parseFloat(inputValue));
-            console.log("Success push"+"Id "+inputId+":"+inputValue);
-          }
-          else {
+            console.log("Success push" + "Id " + inputId + ":" + inputValue);
+          } else {
             console.log("Not allowToCalculate B/C inputValue is !isNumeric");
             allowToCalculate = false;
           }
         }
-        if(allowToCalculate){
-          let rightValue = document.getElementById("equa"+i+"Right").value;
-          if($.isNumeric(rightValue)){
+        if (allowToCalculate) {
+          let rightValue = document.getElementById("equa" + i + "Right").value;
+          if ($.isNumeric(rightValue)) {
             matrixEquationToSend.push(arrayEquation);
             matrixRightSideToSend.push(rightValue);
             console.log(arrayEquation);
-          }
-          else {
+          } else {
             console.log("Not allowToCalculate B/C RightValue is !isNumeric ");
             allowToCalculate = false;
           }
@@ -244,26 +327,24 @@
         $("#h1Result").remove();
         $("#toShowSol").remove();
         // Sendding
-        $.post("linearequation/calculatelinearequation",
-        {
-          equations : matrixEquationToSend,
-          rightEquation : matrixRightSideToSend
-        },
-        function(data,status){
-          let solution = data.solution;
-          console.log("Solution");
-          console.log(solution);
-          let toShowSol = [];
-          for (let i = 0; i < data.solution.length; i++) {
-            toShowSol.push("x"+(i+1)+" = "+data.solution[i]);
-          }
+        $.post("linearequation/calculatelinearequation", {
+            equations: matrixEquationToSend,
+            rightEquation: matrixRightSideToSend
+          },
+          function(data, status) {
+            let solution = data.solution;
+            console.log("Solution");
+            console.log(solution);
+            let toShowSol = [];
+            for (let i = 0; i < data.solution.length; i++) {
+              toShowSol.push("x" + (i + 1) + " = " + data.solution[i]);
+            }
 
-          $('#equationsInput').append('<h2 id="h1Result">Result</h1>');
-          $('#equationsInput').append('<h4 id="toShowSol">'+toShowSol+'</h4>');
+            $('#equationsInput').append('<h2 id="h1Result">Result</h1>');
+            $('#equationsInput').append('<h4 id="toShowSol">' + toShowSol + '</h4>');
 
-        });
-      }
-      else {
+          });
+      } else {
         console.log("Not Sendding to server");
         $("#errorMsg").remove();
         $('#equationsInput').append('<h6 id="errorMsg">Error some coefficients is not a number.</h6>');
