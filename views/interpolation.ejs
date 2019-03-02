@@ -272,10 +272,11 @@
       var myChart;
       var ctx;
       ctx = document.getElementById('graph').getContext('2d');
+
       myChart = new Chart(ctx, {
           type: 'line',
           data: {
-              labels: x,
+              labels: x.sort(),
               datasets: [{
                   label: '',
                   fill: false,

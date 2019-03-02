@@ -43,9 +43,14 @@ router.post("/calculateinterpolation", function(req, res, next) {
   let ansArray = [];
   let isInvalid = false;
   let x = [];
-  for (let i = parseFloat(req.body.minX); i <= parseFloat(req.body.maxX); i += 0.1) {
-    x.push(i);
-    ansArray.push(f(i));
+  // for (let i = parseFloat(req.body.minX); i <= parseFloat(req.body.maxX); i += 0.1) {
+  //   x.push(i);
+  //   ansArray.push(f(i));
+  // }
+
+  for (let i = 0; i < req.body.coordinateArray.length; i ++) {
+    x.push(req.body.coordinateArray[i][0]);
+    ansArray.push(f(req.body.coordinateArray[i][0]));
   }
 
 // console.log(isFinite(ansArray[0]));
