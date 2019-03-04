@@ -94,6 +94,7 @@
                 <h3 id="errorMsg"></h3>
               </div>
             </div>
+
             <div class="row justify-content-center  my-4">
               <div class="btn-group" role="group">
                 <label>Min X:</label>
@@ -111,7 +112,14 @@
             <div class="row justify-content-center my-4">
               <button type="button" class="btn btn-primary" onclick="calculateCoordinates()">Interpolate</button>
             </div>
+
+            <div class="row justify-content-center my-5" id="rowInputGraph">
+              <h4 id="hInputGraph"></h4>
+              <canvas id="inputGraph" ></canvas>
+            </div>
+
             <div class="row justify-content-center my-5" id="rowGraph">
+              <h4 id="hGraph"></h4>
               <canvas id="graph" ></canvas>
             </div>
 
@@ -257,7 +265,54 @@
               document.getElementById("errorMsg").append("Error!!");
             }
             else {
-              document.getElementById('graph').remove();
+              //inputGraph
+              document.getElementById('hInputGraph').innerHTML = 'Input graph';
+              document.getElementById('hGraph').innerHTML = 'F(x) graph';
+              let sortData = toSendArray.sort(function(a,b){
+                return a[0] - b[0];
+              });
+              let inputX=[];
+              let inputY=[];
+              for(let i =0;i<sortData.length;i++){
+                inputX.push(sortData[i][0]);
+                inputY.push(sortData[i][1]);
+              }
+              console.log(inputX);
+              console.log(inputY);
+              var inputChart;
+              var inputCtx;
+              if(window.bar != undefined) {window.bar.destroy();}
+              inputCtx = document.getElementById('inputGraph').getContext('2d');
+
+
+              inputChart = new Chart(inputCtx, {
+                  type: 'line',
+                  data: {
+                      labels: inputX,
+                      datasets: [{
+                          label: '',
+                          fill: false,
+                          data: inputY,
+                          borderColor: 'lightgreen',
+
+                          borderWidth: 1
+                      }]
+                  },
+                  options: {
+                      scales: {
+                          yAxes: [{
+                              ticks: {
+                                  beginAtZero:false
+                              }
+                          }]
+                      },
+                      legend: {
+                        display: false
+                      }
+                  }
+              });
+
+              // result graph
                 callbackFunc(x,solution,drawGraph);
             }
           });
@@ -265,27 +320,26 @@
       }
     }
     function callbackFunc(x,solution,callback) {
-      $('#rowGraph').append('<canvas id="graph" ></canvas>');
+      // $('#rowGraph').append('<canvas id="graph" ></canvas>');
+
       callback(x,solution);
     }
     function drawGraph(x,solution){
       var myChart;
       var ctx;
+      if(window.bar != undefined) {window.bar.destroy();}
       ctx = document.getElementById('graph').getContext('2d');
 
       myChart = new Chart(ctx, {
           type: 'line',
           data: {
-              labels: x.sort(),
+              labels: x,
               datasets: [{
                   label: '',
                   fill: false,
                   data: solution,
+                  borderColor: 'rgb(255, 99, 132)',
 
-                  // borderColor: [
-                  //     'rgba(255,99,132,1)'
-                  //
-                  // ],
                   borderWidth: 1
               }]
           },
@@ -302,6 +356,8 @@
               }
           }
       });
+
+
 
     }
   </script>
