@@ -430,7 +430,11 @@
           if (!isFinite(document.getElementById(tableBId).value)) {
             allowToSend = false;
             break;
-          } else {
+          }else if (document.getElementById(tableBId).value == "") {
+            allowToSend = false;
+            break;
+          }
+           else {
             tempRowForB.push(document.getElementById(tableBId).value);
             console.log(tempRowForB);
           }
