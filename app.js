@@ -16,7 +16,6 @@ var matrixRouter = require('./routes/matrix');
 var normRouter = require('./routes/norm');
 var linearEquationRouter = require('./routes/linearequation');
 var interpolationRouter = require('./routes/interpolation');
-var choleskyFactorizationRouter = = require('./routes/choleskyFactorization');
 
 var app = express();
 
@@ -39,7 +38,6 @@ app.use('/matrix', matrixRouter);
 app.use('/norm',normRouter);
 app.use('/linearequation',linearEquationRouter);
 app.use('/interpolation',interpolationRouter);
-app.use('/choleskyFactorization',choleskyFactorizationRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
