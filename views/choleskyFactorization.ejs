@@ -72,7 +72,7 @@
         <div class="card">
           <div class="card-body">
             <h1 class="card-title">Cholesky Factorization</h1>
-          
+
 
           </div>
         </div>
@@ -105,99 +105,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script type="text/javascript">
-    let normCount = 3;
-
-    function addNorm() {
-      normCount++;
-      let normTableBodyStr = '';
-      document.getElementById("normTableBody").innerHTML = "";
-      for (let i = 1; i <= normCount; i++) {
-        normTableBodyStr += '<tr><th scope="row">' + i + '</th>' + '<td><input type="text" class="form-control form-control-sm width2" id="n' + i + '"'+ ' onchange="'+'setInputToDefult(\'n'+i +'\')" ></td></tr>';
-      }
-      $('#normTableBody').append(normTableBodyStr);
-    }
-
-    function delNorm() {
-      normCount--;
-      let normTableBodyStr = '';
-      document.getElementById("normTableBody").innerHTML = "";
-      for (let i = 1; i <= normCount; i++) {
-        normTableBodyStr += '<tr><th scope="row">' + i + '</th>' + '<td><input type="text" class="form-control form-control-sm width2" id="n' + i + '"'+ ' onchange="'+'setInputToDefult(\'n'+i +'\')" ></td></tr>';
-      }
-      $('#normTableBody').append(normTableBodyStr);
-    }
-    function calculateNorm() {
-      let toSendData = [];
-      let allowToSend = true;
-      let notFiniteErrorIndex = "";
-      let emptyErrorIndex = "";
-      for(let i =1;i<=normCount;i++){
-        id = "n"+i;
-        if (!isFinite(document.getElementById(id).value)) {
-          notFiniteErrorIndex+= "#"+i+",";
-          allowToSend = false;
-          let elementToChange = document.getElementById(id);
-          elementToChange.className += " border-danger";
-        }else if (document.getElementById(id).value == "") {
-          emptyErrorIndex+= "#"+i+",";
-          allowToSend = false;
-          let elementToChange = document.getElementById(id);
-          elementToChange.className += " border-danger";
-        }
-         else {
-          toSendData.push(document.getElementById(id).value);
-          console.log(toSendData);
-        }
-      }
-      if(allowToSend){
-        // send to server
-        $.post("norm/calculatenorm", {
-            norm: toSendData
-          },
-          function(data, status) {
-            let solution = data.solution;
-            let solution2 = data.solution2;
-            let solution3 = data.solution3;
-            let answer = data.answer;
-            console.log(solution,solution2,solution3,answer);
-            document.getElementById("solDiv").innerHTML='';
-            $('#solDiv').append('<div class="col-12 "><h2>Solution</h2></div><div class="col-12 px-5"><div class="overflow-auto"><h4 class="px-1 ">= <span style="white-space: nowrap;">&nbsp;&nbsp;&nbsp;&radic;<span style="text-decoration:overline;">&nbsp;'+solution+'&nbsp;</span></span></h4>'+'<h4 class="px-1 ">= <span style="white-space: nowrap;">&nbsp;&nbsp;&nbsp;&radic;<span style="text-decoration:overline;">&nbsp;'+solution2+'&nbsp;</span></span></h4>'+'<h4 class="px-1 ">= <span style="white-space: nowrap;">&nbsp;&nbsp;&nbsp;&radic;<span style="text-decoration:overline;">&nbsp;'+solution3+'&nbsp;</span></span></h4></div></div>');
-
-            $('#solDiv').append('<div class="col-12 "><h2>Answer</h2></div><div class="col-12 px-5"><h4>= '+answer+'</h4></div>');
-            // <div class="col-12 ">
-            //   <h1>Solution</h1>
-            // </div>
-            // <div class="col-12 px-5">
-            //   <h2>sol</h2>
-            //   <div class="overflow-auto">
-            //
-            //   <h4 class="px-1 ">= <span style="white-space: nowrap;">&nbsp;&nbsp;&nbsp;&radic;<span style="text-decoration:overline;" id="solutionSpan">&nbsp;2-2-2asdlkwerenrkerntkjdbgkdbgkdjfbgkdfjgbdk&nbsp;</span></span></h4>
-            //   <h4 class="px-1 ">= <span style="white-space: nowrap;">&nbsp;&nbsp;&nbsp;&radic;<span style="text-decoration:overline;" id="solutionSpan">&nbsp;2-2-2asdlkwerenrkerntkjdbgkdbgkdjfbgkdfjgbdk&nbsp;</span></span></h4>
-            // </div>
-            // </div>
-            // <div class="col-12 px-5">
-            //   <h2>Answer</h3>
-            // </div>
-
-
-            // document.getElementById("changableContent1").innerHTML = "";
-            // $('#changableContent1').append("<h1>Solution</h1>");
-            // createSolutionTableForMatrixC(solution);
-            // $('#changableContent1').append("<h1>Answer</h1>");
-            // createTableForMatrixC(receive);
-            // $('#changableContent1').append('<a href="/matrix/matrixmultiplication"  class="btn btn-primary">Go back</a>');
-          });
-      }
-      else{
-        let errorToShow = "Error! "+notFiniteErrorIndex+emptyErrorIndex+" are not a number!! or empty!!";
-        document.getElementById("errorMsg").innerHTML = errorToShow;
-      }
-    }
-    function setInputToDefult(arg1){
-      document.getElementById(arg1).classList.remove('border-danger');
-    }
-  </script>
+  
 </body>
 
 </html>
