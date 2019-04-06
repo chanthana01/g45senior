@@ -45,8 +45,8 @@
             <a class="dropdown-item" href="/norm">Norm</a>
             <a class="dropdown-item" href="/linearequation">Systems of Linear Equations</a>
             <a class="dropdown-item" href="/interpolation">Interpolation</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <!-- <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a> -->
           </div>
         </li>
         <%- dashboardBt %>
@@ -325,6 +325,7 @@
                   outPutFxStr+= '<tr>'+'<th scope="row">'+"F("+x[i]+") "+'</th>'+'<td>'+ solution[i]+'</td>'+'</tr>';
                 }
                 outPutFxStr+= '</tbody></table>';
+                $("#fxVal").html("");
                 $('#fxVal').append(outPutFxStr);
 
             }
