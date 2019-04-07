@@ -18,6 +18,8 @@ var linearEquationRouter = require('./routes/linearequation');
 var interpolationRouter = require('./routes/interpolation');
 
 var directmethodRouter = require('./routes/directmethod');
+var newtonmethodRouter = require('./routes/newtonmethod');
+var lagrancemethodRouter = require('./routes/lagrancemethod');
 
 var app = express();
 
@@ -42,6 +44,8 @@ app.use('/linearequation',linearEquationRouter);
 app.use('/interpolation',interpolationRouter);
 
 app.use('/directmethod',directmethodRouter);
+app.use('/newtonmethod',newtonmethodRouter);
+app.use('/lagrancemethod',lagrancemethodRouter);
 
 
 // catch 404 and forward to error handler

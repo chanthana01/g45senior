@@ -70,70 +70,68 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <h1 class="card-title">Direct Method</h1>
+            <h1 class="card-title">Lagrance Method</h1>
             <hr>
-            <h6 class="card-subtitle mb-2">
-              Given ‘n+1’ data points (x<sub>0</sub>,y<sub>0</sub>), (x<sub>1</sub>,y<sub>1</sub>), ... , (x<sub>n</sub>,y<sub>n</sub>), pass a polynomial of order ‘n’ through the data as given below:
+            <h6 class="card-subtitle mb-2 text-muted">
+              Lagrance polynomial is another form used for polynomial interpolation. It is called a form because with a given set of distinct points the interpolating polynomial is unique. We can arrive at the same polynomial through different
+              methods.
             </h6>
             <br>
-            <center><img src="/images/directmethod1.jpg" height="50" class=" " alt=""></center>
-            <br>
             <h6 class="card-subtitle mb-2">
-              where a<sub>0</sub>, a<sub>1</sub>, ... , a<sub>n</sub> are real constants.
-            </h6>
-
-            <br>
-            <h6 class="card-subtitle mb-2">
-              <li>Set up ‘n+1’ equations to find ‘n+1’ constants.</li>
-              <li>To find the value ‘y’ at a given value of ‘x’, simply substitute the value of ‘x’ in the above polynomial.</li>
-            </h6>
-
-            <hr>
-            <br>
-            <h6 class="card-subtitle mb-2">
-              For example, given two data points: (x<sub>0</sub>,y<sub>0</sub>), (x<sub>1</sub>,y<sub>1</sub>).
-              We can use a linear function
+              Given a set of k + 1 data points
             </h6>
             <br>
-            <center><img src="/images/directmethod2.jpg" height="50" class=" " alt=""></center>
+            <center><img src="/images/LM1.jpg" height="50" class=" " alt=""></center>
             <br>
-
-            <h6 class="card-subtitle mb-2">Once we solve for a<sub>0</sub> and a<sub>1</sub>,the coefficients off(x). </h6>
+            <h6 class="card-subtitle mb-2">
+              where no two x<sub>j</sub> are the same, the interpolation polynomial in the Lagrange form is a linear combination
+            </h6>
             <br>
-            <center><img src="/images/directmethod3.jpg" height="100" class=" " alt=""></center>
+            <center><img src="/images/LM2.jpg" height="80" class=" " alt=""></center>
             <br>
-            <h6 class="card-subtitle mb-2"> We can use the function as the basis for interpolation - estimating the missing data points in-between. </h6>
+            <h6 class="card-subtitle mb-2">
+              of Lagrange basis polynomials.
+            </h6>
+            <br>
+            <center><img src="/images/LM3.jpg" height="80" class=" " alt=""></center>
+            <br>
+            <br>
+            <h6 class="card-subtitle mb-2">
+              where 0 ≤ j≤ k. Note how, given the initial assumption that no two x<sub>j</sub> are then same,x<sub>j</sub> - x<sub>m</sub> ≠ 0.
+              The reason pairs x<sub>i</sub> = x<sub>j</sub> with y<sub>i</sub> ≠ y<sub>j</sub> are not allowed is that no interpolation function L such that
+              y<sub>i</sub> = L (x<sub>i</sub>) would exist; a function can only get one value for each argument x<sub>i</sub>.
+              On the other hand, if also y<sub>i</sub> = y<sub>j</sub>, then those two points would actually be one single point.
+              <br>
+            </h6>
+            <h6 class="card-subtitle mb-2">
+              <br>
+              For all i ≠ j, l<sub>j</sub>(x) includes the term (x - x<sub>j</sub>) in the numerator, so the whole product will be zero at x = x<sub>i</sub>:
+            </h6>
+            <br>
+            <center><img src="/images/LM4.jpg" height="70" class=" " alt=""></center>
+            <br>
+            <h6 class="card-subtitle mb-2">
+              <br>
+              On the other hand,
+            </h6>
+            <br>
+            <center><img src="/images/LM5.jpg" height="60" class=" " alt=""></center>
+            <br>
+            <h6 class="card-subtitle mb-2">
+              In other words, all basis polynomials are zero at x = x<sub>i</sub>, except ℓ<sub>i</sub>(x), for which it holds that ℓ<sub>i</sub>(x<sub>i</sub>)=1, because it lacks the
+              (x-x<sub>i</sub>) term.It follows that y<sub>i</sub>ℓ<sub>i</sub>(x<sub>i</sub>) = y<sub>i</sub>, so at each point x<sub>i</sub>, L(x<sub>i</sub>) = y<sub>i</sub> + 0 + 0 + ... + 0 = y<sub>i</sub>, showing that
+              L interpolates the function exactly.
+            </h6>
+            <br>
+  
             <br>
             <hr>
             <h6 class="card-subtitle mb-2 text-muted"><a class="nav-link" href="/interpolation">... Go back to Methods of interpolation</a></h6>
             <hr>
-
-
-
-          </div>
-          <div class="col-sm-6 col-12">
-            <div class="row justify-content-center" id="solDiv">
-              <!-- <div class="col-12 ">
-                    <h1>Solution</h1>
-                  </div>
-                  <div class="col-12 px-5">
-                    <h2>sol</h2>
-                    <div class="overflow-auto">
-
-                    <h4 class="px-1 ">= <span style="white-space: nowrap;">&nbsp;&nbsp;&nbsp;&radic;<span style="text-decoration:overline;" id="solutionSpan">&nbsp;2-2-2asdlkwerenrkerntkjdbgkdbgkdjfbgkdfjgbdk&nbsp;</span></span></h4>
-                    <h4 class="px-1 ">= <span style="white-space: nowrap;">&nbsp;&nbsp;&nbsp;&radic;<span style="text-decoration:overline;" id="solutionSpan">&nbsp;2-2-2asdlkwerenrkerntkjdbgkdbgkdjfbgkdfjgbdk&nbsp;</span></span></h4>
-                  </div>
-                  </div>
-                  <div class="col-12 px-5">
-                    <h2>Answer</h3>
-                  </div> -->
-            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  </div>
 
   </div>
   <footer>

@@ -70,70 +70,59 @@
       <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <h1 class="card-title">Direct Method</h1>
+            <h1 class="card-title">Newton's Method</h1>
             <hr>
-            <h6 class="card-subtitle mb-2">
-              Given ‘n+1’ data points (x<sub>0</sub>,y<sub>0</sub>), (x<sub>1</sub>,y<sub>1</sub>), ... , (x<sub>n</sub>,y<sub>n</sub>), pass a polynomial of order ‘n’ through the data as given below:
+            <h6 class="card-subtitle mb-2 text-muted">
+              Newton polynomial, named after its inventor Isaac Newton,it is an interpolation polynomial for a given set of data points. The Newton polynomial is sometimes called Newton's divided differences interpolation polynomial because the
+              coefficients of the polynomial are calculated using Newton's divided differences method.
             </h6>
             <br>
-            <center><img src="/images/directmethod1.jpg" height="50" class=" " alt=""></center>
+            <h6 class="card-subtitle mb-2">
+              Given a set of k + 1 data points
+            </h6>
+            <br>
+            <center><img src="/images/NM1.jpg" height="50" class=" " alt=""></center>
             <br>
             <h6 class="card-subtitle mb-2">
-              where a<sub>0</sub>, a<sub>1</sub>, ... , a<sub>n</sub> are real constants.
+              where no two x<sub>j</sub> are the same, the Newton interpolation polynomial is a linear combination of Newton basis polynomials
             </h6>
+            <br>
+            <center><img src="/images/NM2.jpg" height="80" class=" " alt=""></center>
+            <br>
+            <h6 class="card-subtitle mb-2">
+              With the Newton basis polynomials defined as
+            </h6>
+            <br>
+            <center><img src="/images/NM3.jpg" height="80" class=" " alt=""></center>
+            <br>
+            <h6 class="card-subtitle mb-2">
+              for j > 0 and n<sub>0</sub>(x)=1.
+              Then the coefficients are defined as
+              <br>
+              <center> a<sub>j</sub> := [y<sub>0</sub>, ... ,y<sub>j</sub>]</center>
 
-            <br>
-            <h6 class="card-subtitle mb-2">
-              <li>Set up ‘n+1’ equations to find ‘n+1’ constants.</li>
-              <li>To find the value ‘y’ at a given value of ‘x’, simply substitute the value of ‘x’ in the above polynomial.</li>
             </h6>
-
-            <hr>
-            <br>
             <h6 class="card-subtitle mb-2">
-              For example, given two data points: (x<sub>0</sub>,y<sub>0</sub>), (x<sub>1</sub>,y<sub>1</sub>).
-              We can use a linear function
+              <br>
+              where [y<sub>0</sub>, ... ,y<sub>j</sub>] is the notation for divided differences.
+
             </h6>
             <br>
-            <center><img src="/images/directmethod2.jpg" height="50" class=" " alt=""></center>
-            <br>
+            <h6 class="card-subtitle mb-2">
 
-            <h6 class="card-subtitle mb-2">Once we solve for a<sub>0</sub> and a<sub>1</sub>,the coefficients off(x). </h6>
+            Thus the Newton polynomial can be written as:
+            </h6>
             <br>
-            <center><img src="/images/directmethod3.jpg" height="100" class=" " alt=""></center>
+            <center><img src="/images/NM4.jpg" height="60" class=" " alt=""></center>
             <br>
-            <h6 class="card-subtitle mb-2"> We can use the function as the basis for interpolation - estimating the missing data points in-between. </h6>
             <br>
             <hr>
             <h6 class="card-subtitle mb-2 text-muted"><a class="nav-link" href="/interpolation">... Go back to Methods of interpolation</a></h6>
             <hr>
-
-
-
-          </div>
-          <div class="col-sm-6 col-12">
-            <div class="row justify-content-center" id="solDiv">
-              <!-- <div class="col-12 ">
-                    <h1>Solution</h1>
-                  </div>
-                  <div class="col-12 px-5">
-                    <h2>sol</h2>
-                    <div class="overflow-auto">
-
-                    <h4 class="px-1 ">= <span style="white-space: nowrap;">&nbsp;&nbsp;&nbsp;&radic;<span style="text-decoration:overline;" id="solutionSpan">&nbsp;2-2-2asdlkwerenrkerntkjdbgkdbgkdjfbgkdfjgbdk&nbsp;</span></span></h4>
-                    <h4 class="px-1 ">= <span style="white-space: nowrap;">&nbsp;&nbsp;&nbsp;&radic;<span style="text-decoration:overline;" id="solutionSpan">&nbsp;2-2-2asdlkwerenrkerntkjdbgkdbgkdjfbgkdfjgbdk&nbsp;</span></span></h4>
-                  </div>
-                  </div>
-                  <div class="col-12 px-5">
-                    <h2>Answer</h3>
-                  </div> -->
-            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  </div>
 
   </div>
   <footer>
