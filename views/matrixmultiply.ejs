@@ -241,6 +241,9 @@
           <div class="row justify-content-center my-3 p-2 margin-15" id="changableContent1">
             <button type="button" class="btn btn-primary" onclick="createTable()">Set matrices</button>
           </div>
+          <div class="row justify-content-center my-3 p-2 margin-15" >
+            <h1 id="errorMSG"></h1>
+          </div>
 
 
         </div>
@@ -446,9 +449,11 @@
       console.log(toSendMatrixB);
 
       if (allowToSend) {
+          document.getElementById("errorMSG").innerHTML = "";
         processMatrixToServer(toSendMatrixA, toSendMatrixB);
       } else {
-        $('#changableContent1').append("<h1>Error some input is not a number.</h1>");
+        document.getElementById("errorMSG").innerHTML = "";
+        $('#errorMSG').append("Error some input is not a number.");
       }
 
     }
